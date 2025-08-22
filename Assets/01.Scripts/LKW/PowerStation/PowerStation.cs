@@ -1,16 +1,9 @@
+using _01.Scripts.LKW.PowerStation;
 using UnityEngine;
 
 public class PowerStation : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField] private StationDataSO stationData;
+    
+    
 }
