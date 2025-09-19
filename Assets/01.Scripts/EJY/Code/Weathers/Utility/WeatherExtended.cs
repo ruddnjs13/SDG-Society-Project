@@ -2,9 +2,9 @@
 {
     public static class WeatherExtended
     {
-        public static bool CanActionByWeather(this WeatherDataSO data, WeatherType powerStationWeatherType)
+        public static bool CanWorkByWeather(this WeatherDataSO data, WeatherType disturbanceWeatherType)
         {
-            return data.weatherType == powerStationWeatherType;
+            return data.weatherType != disturbanceWeatherType;
         }
     }
 }
