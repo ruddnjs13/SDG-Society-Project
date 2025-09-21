@@ -1,7 +1,7 @@
 using Core.GameEvent;
 using UnityEngine;
 
-namespace _01.Scripts.LKW.Events
+namespace LKW.Generaters.LKW.Events
 {
     public static class EnergyEvents
     {
@@ -10,7 +10,7 @@ namespace _01.Scripts.LKW.Events
 
     public class GetEnergyEvent : GameEvent
     {
-        private int getAmount;
+        public int getAmount;
 
         public GetEnergyEvent Initializer(int getAmount)
         {

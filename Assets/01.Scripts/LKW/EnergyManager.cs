@@ -1,10 +1,10 @@
 using System;
-using _01.Scripts.LKW.Events;
 using Core.GameEvent;
+using LKW.Generaters.LKW.Events;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-namespace _01.Scripts.LKW
+namespace LKW.Generaters.LKW
 {
     public class EnergyManager : MonoSingleton<EnergyManager>
     {
@@ -26,9 +26,9 @@ namespace _01.Scripts.LKW
             energyChannel.AddListener<GetEnergyEvent>(HandleGetEnergyEvent);
         }
 
-        private void HandleGetEnergyEvent(GetEnergyEvent obj)
+        private void HandleGetEnergyEvent(GetEnergyEvent evt)
         {
-            
+            Energy += evt.getAmount;
         }
     }
 }
