@@ -18,7 +18,7 @@ namespace Code.Weathers
         private float _currentTime = 0;
         
         public WeatherType CurrentWeather { get; private set; } = WeatherType.Normal;
-        public WeatherType CurrentTimeZone { get; private set; } = WeatherType.Morning;
+        public TimeZoneType CurrentTimeZone { get; private set; } = TimeZoneType.Morning;
 
         private void Awake()
         {
@@ -49,7 +49,7 @@ namespace Code.Weathers
         private void HandleTimeZoneChange(TimeZoneChangeEvent evt)
         {
             CurrentTimeZone = evt.type;
-            SendWeatherData data = new SendWeatherData{Type = CurrentWeather | CurrentTimeZone};
+            SendWeatherData data = new SendWeatherData{TypeBit = (int)CurrentWeather | (int)CurrentTimeZone};
             WeatherDataSO weatherData = _weatherDataDict.GetValueOrDefault(CurrentWeather);
             if(weatherData != null)
                 SendEvent(data, weatherData.weatherIcon);
@@ -62,7 +62,7 @@ namespace Code.Weathers
             WeatherDataSO randData = weatherData[Random.Range(0, weatherData.Length)];
             CurrentWeather = randData.weatherType;
             
-            SendWeatherData data = new SendWeatherData{Type = CurrentWeather | CurrentTimeZone};
+            SendWeatherData data = new SendWeatherData{TypeBit = (int)CurrentWeather | (int)CurrentTimeZone};
             SendEvent(data, randData.weatherIcon);
         }
 

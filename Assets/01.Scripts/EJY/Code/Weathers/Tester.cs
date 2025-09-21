@@ -16,7 +16,7 @@ namespace Code.Weathers
 
         private void HandleWeatherChange(WeatherChangeEvent evt)
         {
-            Debug.Log(evt.data.Type);
+            Debug.Log(evt.data.TypeBit);
         }
     }
 }

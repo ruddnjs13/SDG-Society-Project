@@ -24,7 +24,7 @@ namespace Code.TimeZones
 
         private void HandleValueChanged(bool prev, bool next)
         {
-            environmentChannel.RaiseEvent(EnvironmentEvents.TimeZoneChangeEvent.Init(next ? WeatherType.Morning : WeatherType.Night));
+            environmentChannel.RaiseEvent(EnvironmentEvents.TimeZoneChangeEvent.Init(next ? TimeZoneType.Morning : TimeZoneType.Night));
         }
 
         private void OnDestroy()

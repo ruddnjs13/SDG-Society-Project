@@ -25,9 +25,9 @@ namespace Code.Events
     
     public class TimeZoneChangeEvent : GameEvent
     {
-        public WeatherType type;
+        public TimeZoneType type;
 
-        public TimeZoneChangeEvent Init(WeatherType type)
+        public TimeZoneChangeEvent Init(TimeZoneType type)
         {
             this.type = type;
             return this;
