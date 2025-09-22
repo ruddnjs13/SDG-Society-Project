@@ -17,16 +17,20 @@ namespace Code.Weathers
         Snowy = 16,
         ///<summary>흐린 날씨</summary>
         Cloudy = 32,
-        ///<summary>Morning</summary>
+        
+        Max
+    }
+    
+    public enum TimeZoneType
+    {
+        ///<summary>아침</summary>
         Morning = 64,
         ///<summary>밤</summary>
         Night = 128,
-        
-        Max
     }
 
     public struct SendWeatherData
     {
-        public WeatherType Type;
+        public int TypeBit;
     }
 }
