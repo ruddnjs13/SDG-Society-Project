@@ -1,10 +1,8 @@
 using System;
 using DG.Tweening;
 using RuddnjsPool;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
-using IPoolable = RuddnjsPool.IPoolable;
 using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(AudioSource))]
@@ -69,7 +67,7 @@ public class SoundPlayer : MonoBehaviour, IPoolable
     
     #region Pool
 
-    [field:SerializeField] public PoolTypeSO PoolType { get; set; }
+    [field:SerializeField]  public PoolingItemSO PoolingType { get; set; }
     public GameObject GameObject => gameObject;
 
     private Pool _myPool;
