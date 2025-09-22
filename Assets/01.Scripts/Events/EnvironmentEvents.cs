@@ -12,10 +12,10 @@ namespace Code.Events
 
     public class WeatherChangeEvent : GameEvent
     {
-        public SendWeatherData data;
+        public SendEnvironmentData data;
         public Sprite icon;
 
-        public WeatherChangeEvent Init(SendWeatherData data,Sprite icon)
+        public WeatherChangeEvent Init(SendEnvironmentData data,Sprite icon)
         {
             this.data = data;
             this.icon = icon;
