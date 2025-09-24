@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 839fcb1266e05ce4f9b82007201059f7, type: 3}
+  m_Script: {fileID: 11500000, guid: c3a4afc4c03a454f9c1df9a315b2b0bb, type: 3}
   m_Name: GetEnergyView
   m_EditorClassIdentifier: 
-  poolType: {fileID: 11400000, guid: 4cfaf94faa26fcd408439e524184ee4a, type: 2}
+  poolingName: GetEnergyView
   prefab: {fileID: 4780482534028400249, guid: e5f329bbe420a144ba3fe42b42ea8439, type: 3}
   initCount: 10

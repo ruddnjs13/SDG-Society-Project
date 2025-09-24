@@ -1,3 +1,4 @@
+using System;
 using LKW.Generaters.LKW.Events;
 using Code.Weathers;
 using Core.GameEvent;
@@ -12,14 +13,20 @@ namespace LKW.Generators
         [SerializeField] private PoolManagerSO poolManager;
         [SerializeField] private GameEventChannelSO energyChannel;
         [SerializeField] private PoolingItemSO energyItemPrefab;
+        [SerializeField] private GeneratorDataSo generatorData;
         
         private  float _generateAmount;
         private  float _amountMultiplier;
         public  WeatherType WeatherType { get; private set; }
         public float GenerateTime {get; private set;}
         public float RemainingTime { get; set; } = 0f;
-        
-        public void Initialize(GeneratorDataSO generatorData)
+
+        private void Start()
+        {
+            Initialize(generatorData);
+        }
+
+        public void Initialize(GeneratorDataSo generatorData)
         {
             GenerateTime = generatorData.generateTime;
             WeatherType = generatorData.weatherType;
@@ -36,6 +43,13 @@ namespace LKW.Generators
             RemainingTime = 0f;
             
             GetEnergyView energyView = poolManager.Pop(energyItemPrefab) as GetEnergyView;
+            energyView.ShowEnergyView(transform.position+ new Vector3(0,0.5f,0));
+        }
+
+        [ContextMenu("Add Generator")]
+        public void AddGenerator()
+        {
+            GeneratorManager.Instance.AddGenerator(this);
         }
     }
 }
