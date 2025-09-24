@@ -25,43 +25,39 @@ namespace LandSystem
                 _grid.Add(posXY);
                 _powerStationGrid.Add(posXY, null);
             }
-        }
-
-        public bool IsPossibleBuild(BuildingData data)
-        {
-            foreach (var pos in data.OffsetPosListList)
-            {
-                Vector2Int position = data.PivotPos + pos;
-                if (!_grid.Contains(position) || _powerStationGrid[position])
-                {
-                    return false;
-                }
-            }
             
-            return true;
+            landChannel.AddListener<BuildCompleteEvent>(HandleBuildComplete);
         }
 
-        public void SetBuildStation(BuildingData data)
+        public bool IsPossibleBuild(Vector2Int point)
         {
-            if (!IsPossibleBuild(data))
+            return _grid.Contains(point) && !_powerStationGrid[point];
+        }
+
+        public void RequestBuild(GeneratorData data)
+        {
+            if (!IsPossibleBuild(Vector2Int.RoundToInt(data.position)))
             {
-                var evt = LandEvents.BuildFailEvent.Initializer(data.PivotPos);
+                var evt = LandEvents.BuildFailEvent.Initializer(data.position);
                 landChannel.RaiseEvent(evt);
                 return;
             }
-
-            foreach (var offset in data.OffsetPosListList)
-            {
-                Vector2Int pos = data.PivotPos + offset;
-
-                _powerStationGrid[pos] = data.Target;
-            }
             
-            if(!IsPossibleBuild(data))
+            var requestEvt = LandEvents.BuildRequestEvent.Initializer(data);
+            landChannel.RaiseEvent(requestEvt);
+        }
+        
+        private void HandleBuildComplete(BuildCompleteEvent evt)
+        {
+            Vector2Int pos = Vector2Int.RoundToInt(evt.targetTrm.position);
+            
+            if (!IsPossibleBuild(pos))
             {
-                var evt = LandEvents.BuildCompleteEvent.Initializer(data);
-                landChannel.RaiseEvent(evt);
+                Debug.LogError("there is not empty place");
+                return;
             }
+
+            _powerStationGrid[pos] = evt.targetTrm;
         }
     }
 }
