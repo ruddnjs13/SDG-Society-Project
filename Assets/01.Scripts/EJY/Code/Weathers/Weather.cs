@@ -49,7 +49,7 @@ namespace Code.Weathers
         private void HandleTimeZoneChange(TimeZoneChangeEvent evt)
         {
             CurrentTimeZone = evt.type;
-            SendWeatherData data = new SendWeatherData{TypeBit = (int)CurrentWeather | (int)CurrentTimeZone};
+            SendEnvironmentData data = new SendEnvironmentData{TypeBit = (int)CurrentWeather | (int)CurrentTimeZone};
             WeatherDataSO weatherData = _weatherDataDict.GetValueOrDefault(CurrentWeather);
             if(weatherData != null)
                 SendEvent(data, weatherData.weatherIcon);
@@ -62,11 +62,11 @@ namespace Code.Weathers
             WeatherDataSO randData = weatherData[Random.Range(0, weatherData.Length)];
             CurrentWeather = randData.weatherType;
             
-            SendWeatherData data = new SendWeatherData{TypeBit = (int)CurrentWeather | (int)CurrentTimeZone};
+            SendEnvironmentData data = new SendEnvironmentData{TypeBit = (int)CurrentWeather | (int)CurrentTimeZone};
             SendEvent(data, randData.weatherIcon);
         }
 
-        private void SendEvent(SendWeatherData data, Sprite icon)
+        private void SendEvent(SendEnvironmentData data, Sprite icon)
         {
             environmentChannel.RaiseEvent(EnvironmentEvents.WeatherChangeEvent.Init(data, icon));
         }
