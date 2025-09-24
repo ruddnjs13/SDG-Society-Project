@@ -10,10 +10,11 @@ namespace LKW.Generators
 {
     public class Generator : MonoBehaviour
     {
+        [SerializeField] private GeneratorDataSo generatorData;
         [SerializeField] private PoolManagerSO poolManager;
         [SerializeField] private GameEventChannelSO energyChannel;
         [SerializeField] private PoolingItemSO energyItemPrefab;
-        [SerializeField] private GeneratorDataSo generatorData;
+        [SerializeField] private SpriteRenderer spriteRenderer;
         
         private  float _generateAmount;
         private  float _amountMultiplier;
@@ -32,6 +33,8 @@ namespace LKW.Generators
             WeatherType = generatorData.weatherType;
             _generateAmount = generatorData.generateAmount;
             _amountMultiplier = generatorData.amountMultiplier;
+
+            spriteRenderer.sprite = generatorData.generatorVisual;
         }
 
         public void GenerateEnergy()

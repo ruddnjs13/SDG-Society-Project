@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using Core.GameEvent;
 using UnityEngine;
 
 namespace LKW.Generators
 {
     public class GeneratorManager : MonoSingleton<GeneratorManager>
     {
+        //[SerializeField] private GameEventChannelSO 
+        
         public List<Generator> generators = new List<Generator>();
         
         private void Update()
@@ -23,8 +26,8 @@ namespace LKW.Generators
         
         public void AddGenerator(Generator generator)
         => generators.Add(generator);
-
-        // buildEVent에서 generate 발행 해주면 그걸로 리스트에 추가함
+        
+        
         
     }
 }
