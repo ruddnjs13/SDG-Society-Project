@@ -78,7 +78,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 128
+  spritePixelsToUnits: 256
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -165,10 +165,10 @@ TextureImporter:
       name: "\uC7AC\uC0DD \uAC00\uB2A5 \uC5D0\uB108\uC9C0 \uC2DC\uC124 \uBAA8\uC74C-Photoroom_8"
       rect:
         serializedVersion: 2
-        x: 528
-        y: 83
-        width: 218
-        height: 279
+        x: 595
+        y: 158
+        width: 82
+        height: 105
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

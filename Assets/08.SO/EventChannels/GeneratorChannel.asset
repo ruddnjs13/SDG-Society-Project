@@ -9,9 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14d3064fd2d20ff46a496b11a849755f, type: 3}
-  m_Name: New Pool Manager SO
+  m_Script: {fileID: 11500000, guid: fa8ec30d544f4b7495932b09c894836b, type: 3}
+  m_Name: GeneratorChannel
   m_EditorClassIdentifier: 
-  poolingItemList:
-  - {fileID: 11400000, guid: 8fefd64b9810b4947a51666bf40efc8a, type: 2}
-  _rootTrm: {fileID: 0}

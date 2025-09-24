@@ -1,7 +1,7 @@
 using Code.Weathers;
 using UnityEngine;
 
-namespace LKW.Generaters
+namespace LKW.Generators
 {
     [CreateAssetMenu(fileName = "GeneratorDataSO", menuName = "SO/GeneratorDataSO", order = 0)]
     public class GeneratorDataSO : ScriptableObject

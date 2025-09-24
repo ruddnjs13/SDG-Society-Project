@@ -1,15 +1,17 @@
 using LKW.Generaters.LKW.Events;
 using Code.Weathers;
 using Core.GameEvent;
+using RuddnjsPool;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace LKW.Generaters
+namespace LKW.Generators
 {
     public class Generator : MonoBehaviour
     {
+        [SerializeField] private PoolManagerSO poolManager;
         [SerializeField] private GameEventChannelSO energyChannel;
-        [SerializeField] private GameObject getImage;
+        [SerializeField] private PoolingItemSO energyItemPrefab;
         
         private  float _generateAmount;
         private  float _amountMultiplier;
@@ -32,6 +34,8 @@ namespace LKW.Generaters
             GetEnergyEvent evt = EnergyEvents.GetEnergyEvent.Initializer(getAmount);
             energyChannel.RaiseEvent(evt);
             RemainingTime = 0f;
+            
+            GetEnergyView energyView = poolManager.Pop(energyItemPrefab) as GetEnergyView;
         }
     }
 }

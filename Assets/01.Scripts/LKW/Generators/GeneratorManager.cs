@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace LKW.Generaters
+namespace LKW.Generators
 {
     public class GeneratorManager : MonoBehaviour
     {
