@@ -6,15 +6,15 @@ using UnityEngine;
 
 namespace Code.Weathers
 {
-    public class WeatherParticleController : MonoBehaviour
+    public class WeatherEffectController : MonoBehaviour
     {
         [SerializeField] private GameEventChannelSO environmentChannel;
-        private Dictionary<WeatherType, WeatherParticle> _weatherParticles = new Dictionary<WeatherType, WeatherParticle>();
-        private WeatherParticle _currentWeatherParticle;
+        private Dictionary<WeatherType, WeatherEffect> _weatherParticles = new Dictionary<WeatherType, WeatherEffect>();
+        private WeatherEffect _currentWeatherEffect;
         
         private void Awake()
         {
-            foreach (var weatherParticle in GetComponentsInChildren<WeatherParticle>())
+            foreach (var weatherParticle in GetComponentsInChildren<WeatherEffect>())
             {
                 _weatherParticles.Add(weatherParticle.WeatherType, weatherParticle);
             }
@@ -24,7 +24,7 @@ namespace Code.Weathers
 
         private void HandleWeatherChange(WeatherChangeEvent evt)
         {
-            _currentWeatherParticle?.StopParticle();
+            _currentWeatherEffect?.StopEffect();
             
             WeatherType type = WeatherType.None;
             foreach (WeatherType flag in Enum.GetValues(typeof(WeatherType)))
@@ -38,10 +38,10 @@ namespace Code.Weathers
             
             if(type == WeatherType.None) return;
             
-            _currentWeatherParticle = _weatherParticles.GetValueOrDefault(type);
-            Debug.Assert(_currentWeatherParticle != null, $"Weather particle is null,type is {type}");
+            _currentWeatherEffect = _weatherParticles.GetValueOrDefault(type);
+            Debug.Assert(_currentWeatherEffect != null, $"Weather particle is null,type is {type}");
             
-            _currentWeatherParticle.PlayParticle();
+            _currentWeatherEffect.PlayEffect();
         }
     }
 }
