@@ -9,9 +9,21 @@ namespace LKW.Generators
     {
         //[SerializeField] private GameEventChannelSO 
         
-        public List<Generator> generators = new List<Generator>();
         
+        public List<Generator> generators = new List<Generator>();
+
+        private void OnEnable()
+        {
+        }
+        
+        
+
         private void Update()
+        {
+            RunGenerator();
+        }
+
+        private void RunGenerator()
         {
             foreach (var generator in generators)
             {
@@ -23,11 +35,19 @@ namespace LKW.Generators
                 }
             }
         }
-        
+
         public void AddGenerator(Generator generator)
         => generators.Add(generator);
-        
-        
+
+        private void HandleBuildRequestEvent()
+        {
+            
+        }
+
+        private void HandleWeatherEvent()
+        {
+            
+        }
         
     }
 }
