@@ -1,4 +1,5 @@
 using Code.Weathers;
+using LKW.Generaters;
 using UnityEngine;
 
 namespace LKW.Generators
@@ -10,5 +11,9 @@ namespace LKW.Generators
         public float generateTime;
         public float generateAmount;
         public float amountMultiplier;
+        public GeneratorType generatorType;
+        
+        [Space]
+        public Sprite buildingSprite;
     }
 }
