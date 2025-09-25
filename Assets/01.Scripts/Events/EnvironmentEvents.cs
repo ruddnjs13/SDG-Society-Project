@@ -6,16 +6,16 @@ namespace Code.Events
 {
     public static class EnvironmentEvents
     {
-        public static WeatherChangeEvent WeatherChangeEvent = new WeatherChangeEvent();
+        public static EnvironmentChangeEvent EnvironmentChangeEvent = new EnvironmentChangeEvent();
         public static TimeZoneChangeEvent TimeZoneChangeEvent = new TimeZoneChangeEvent();
     }
 
-    public class WeatherChangeEvent : GameEvent
+    public class EnvironmentChangeEvent : GameEvent
     {
         public SendEnvironmentData data;
         public Sprite icon;
 
-        public WeatherChangeEvent Init(SendEnvironmentData data,Sprite icon)
+        public EnvironmentChangeEvent Init(SendEnvironmentData data,Sprite icon)
         {
             this.data = data;
             this.icon = icon;
