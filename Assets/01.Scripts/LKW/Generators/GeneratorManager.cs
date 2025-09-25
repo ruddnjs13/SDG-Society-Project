@@ -7,13 +7,14 @@ namespace LKW.Generators
 {
     public class GeneratorManager : MonoSingleton<GeneratorManager>
     {
-        //[SerializeField] private GameEventChannelSO 
+        [SerializeField] private GameEventChannelSO landChannel;
         
         
         public List<Generator> generators = new List<Generator>();
 
         private void OnEnable()
         {
+            
         }
         
         
@@ -39,7 +40,7 @@ namespace LKW.Generators
         public void AddGenerator(Generator generator)
         => generators.Add(generator);
 
-        private void HandleBuildRequestEvent()
+        private void HandleBuildCompleteEvent()
         {
             
         }
