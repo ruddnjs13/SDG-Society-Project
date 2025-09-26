@@ -1,26 +1,54 @@
 ﻿using System;
 using System.Collections.Generic;
+using Core.GameEvent;
 using UnityEngine;
 
 namespace LKW.Generators
 {
-    public class GeneratorManager : MonoBehaviour
+    public class GeneratorManager : MonoSingleton<GeneratorManager>
     {
-        public List<Generator> generators = new List<Generator>();
+        [SerializeField] private GameEventChannelSO landChannel;
         
+        
+        public List<Generator> generators = new List<Generator>();
+
+        private void OnEnable()
+        {
+            
+        }
+        
+        
+
         private void Update()
+        {
+            RunGenerator();
+        }
+
+        private void RunGenerator()
         {
             foreach (var generator in generators)
             {
                 generator.RemainingTime += Time.deltaTime;
-                if (generator.RemainingTime >= generator.RemainingTime)
+                if (generator.RemainingTime >= generator.GenerateTime)
                 {
                     generator.GenerateEnergy();
+                    generator.RemainingTime = 0;
                 }
             }
         }
 
-        // buildEVent에서 generate 발행 해주면 그걸로 리스트에 추가함
+        public void AddGenerator(Generator generator)
+        => generators.Add(generator);
+
+        private void HandleBuildCompleteEvent()
+        {
+            
+        }
+
+        private void HandleWeatherEvent()
+        {
+            
+        }
         
     }
 }
