@@ -607,6 +607,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e053f5d4be92411e930446dfc51bee49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  landChannel: {fileID: 11400000, guid: 308ec28a89e7dc348989415f7e83c979, type: 2}
+  environmentChannel: {fileID: 11400000, guid: 17ce05b25afff944daca76360d1b3be6, type: 2}
   generators: []
 --- !u!4 &1823257404
 Transform:

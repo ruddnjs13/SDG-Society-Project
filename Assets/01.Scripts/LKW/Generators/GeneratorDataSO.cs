@@ -10,6 +10,7 @@ namespace LKW.Generators
     {
         public GeneratorType generatorType;
         public WeatherType weatherType;
+        public TimeZoneType timeZoneType;
         public Sprite generatorVisual;
         public float generateTime;
         public float generateAmount;
