@@ -32,12 +32,10 @@ namespace Code.TimeZones
         {
             if ((evt.data.TypeBit & (int)TimeZoneType.Morning) != 0)
             {
-                Debug.Log("Current timeZone is morning");
                 DoColor(morningColor, changeDuration);
             }
             else if ((evt.data.TypeBit & (int)TimeZoneType.Night) != 0)
             {
-                Debug.Log("Current timeZone is night");
                 DoColor(nightColor, changeDuration);
             }
         }

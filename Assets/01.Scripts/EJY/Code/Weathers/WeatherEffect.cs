@@ -15,10 +15,17 @@ namespace Code.Weathers
         public abstract void StopEffect();
         public abstract void TransitionBloom();
 
-        public virtual void Init(Bloom bloom, Vignette vignette)
+        public virtual void Init(Volume volume)
         {
-            _bloom = bloom;
-            _vignette = vignette;
+            if (volume.profile.TryGet(out Bloom bloom))
+            {
+                _bloom = bloom;
+            }
+
+            if (volume.profile.TryGet(out Vignette vignette))
+            {
+                _vignette = vignette;
+            }
         }
     }
 }

@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using Code.Events;
 using Core.GameEvent;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.Serialization;
 
 namespace Code.Weathers
 {
     public class WeatherEffectController : MonoBehaviour
     {
         [SerializeField] private GameEventChannelSO environmentChannel;
-        [SerializeField] private Bloom bloom;
-        [SerializeField] private Vignette vignette;
+        [SerializeField] private Volume volume;
         private Dictionary<WeatherType, WeatherEffect> _weatherParticles = new Dictionary<WeatherType, WeatherEffect>();
         private WeatherEffect _currentWeatherEffect;
         
@@ -19,7 +20,7 @@ namespace Code.Weathers
         {
             foreach (var weatherParticle in GetComponentsInChildren<WeatherEffect>())
             {
-                weatherParticle.Init(bloom, vignette);
+                weatherParticle.Init(volume);
                 _weatherParticles.Add(weatherParticle.WeatherType, weatherParticle);
             }
             
