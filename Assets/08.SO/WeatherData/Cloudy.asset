@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a24891bfbff49c9aa1514940db92c72, type: 3}
   m_Name: Cloudy
   m_EditorClassIdentifier: 
-  weatherType: 32
+  weatherType: 16
   weatherIcon: {fileID: 0}
