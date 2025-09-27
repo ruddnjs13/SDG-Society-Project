@@ -10,7 +10,7 @@
         /// <returns>현재 날씨가 발전기의 작동을 방해한다면 false, 아니면 true를 리턴한다.</returns>
         public static bool CanWorkByWeather(this SendEnvironmentData data, SendEnvironmentData disturbanceData)
         {
-            return (data.TypeBit & disturbanceData.TypeBit) != 0;
+            return (data.TypeBit & disturbanceData.TypeBit) == 0;
         }
     }
 }
