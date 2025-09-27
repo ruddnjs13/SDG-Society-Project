@@ -1,10 +1,13 @@
 using System;
+using _01.Scripts.LKW.Generators;
 using LKW.Generaters.LKW.Events;
 using Code.Weathers;
 using Core.GameEvent;
+using LandSystem;
 using RuddnjsPool;
 using UnityEngine;
 using UnityEngine.Serialization;
+using VHierarchy.Libs;
 
 namespace LKW.Generators
 {
@@ -13,8 +16,8 @@ namespace LKW.Generators
         [SerializeField] private PoolManagerSO poolManager;
         [SerializeField] private GameEventChannelSO energyChannel;
         [SerializeField] private PoolingItemSO energyItemPrefab;
-        [SerializeField] private SpriteRenderer spriteRenderer;
         
+        private GeneratorRenderer _generatorRenderer;
         
         private  float _generateAmount;
         private  float _amountMultiplier;
@@ -24,9 +27,14 @@ namespace LKW.Generators
         
         public SendEnvironmentData Data {get; set;}
 
-        public bool isRunning { get; private set; } = false;
+        public bool IsRunning { get; private set; } = false;
 
-        public void Initialize(GeneratorDataSo generatorData)
+        private void Awake()
+        {
+            _generatorRenderer = GetComponent<GeneratorRenderer>();
+        }
+
+        public void Initialize(GeneratorDataSO generatorData)
         {
             int typeBit = (int)generatorData.weatherType | (int)generatorData.timeZoneType;
 
@@ -38,7 +46,7 @@ namespace LKW.Generators
             GenerateTime = generatorData.generateTime;
             _generateAmount = generatorData.generateAmount;
             _amountMultiplier = generatorData.amountMultiplier;
-            spriteRenderer.sprite = generatorData.generatorVisual;
+            _generatorRenderer.SetVisual(generatorData.generatorVisual, IsRunning, _amountMultiplier);
         }
 
         public void GenerateEnergy()
@@ -50,21 +58,19 @@ namespace LKW.Generators
             RemainingTime = 0f;
             
             GetEnergyView energyView = poolManager.Pop(energyItemPrefab) as GetEnergyView;
-            energyView.ShowEnergyView(transform.position+ new Vector3(0,0.5f,0));
+            energyView.ShowEnergyView(transform.position+ new Vector3(0,0.5f,0), getAmount);
         }
-
+        
+        
         public void StartGenerate()
         {
-            isRunning = true;
+            IsRunning = true;
             RemainingTime = 0;
         }
 
-        public void StopGenerate() => isRunning = false;
+        public void StopGenerate() => IsRunning = false;
 
-        public void SetAmountMultiplier(float amount)
-        {
-            _amountMultiplier = amount;
-        }
+        public void SetAmountMultiplier(float amount) => _amountMultiplier = amount;
 
         [ContextMenu("Add Generator")]
         public void AddGenerator()

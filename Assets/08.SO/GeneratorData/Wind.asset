@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c33dd2f75b848ebaf7d40555a0579e6, type: 3}
   m_Name: Wind
   m_EditorClassIdentifier: 
+  generatorType: 0
+  weatherType: 17
+  timeZoneType: 32
   generatorVisual: {fileID: 4878787358618412594, guid: f36cfe3d060a4344dbacd80b936adefb, type: 3}
   generateTime: 4
   generateAmount: 10
   amountMultiplier: 1
-  weatherType: 1

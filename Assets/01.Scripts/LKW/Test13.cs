@@ -1,16 +1,21 @@
+using System;
+using LKW.Generators;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Test13 : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField] private GameObject generatorItem;
+    [SerializeField] private GeneratorDataSO generatorData;
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        if (Keyboard.current.qKey.wasPressedThisFrame)
+        {
+            Generator generator =  Instantiate(generatorItem, transform.position, Quaternion.identity)
+                .GetComponent<Generator>();
+            generator.Initialize(generatorData);
+        }
     }
 }

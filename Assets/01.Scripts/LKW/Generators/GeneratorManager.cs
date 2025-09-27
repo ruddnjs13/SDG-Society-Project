@@ -14,6 +14,7 @@ namespace LKW.Generators
         [SerializeField] private GameEventChannelSO landChannel;
         [SerializeField] private GameEventChannelSO environmentChannel;
         
+        [field:SerializeField] public int EnvironmentBit { get; private set; }
         
         public List<Generator> generators = new List<Generator>();
 
@@ -53,6 +54,9 @@ namespace LKW.Generators
 
         private void HandleEnvironmentChangeEvent(EnvironmentChangeEvent evt)
         {
+
+            EnvironmentBit = evt.data.TypeBit;
+            
             foreach (var generator in generators)
             {
                 if (generator.Data.CanWorkByWeather(evt.data))
