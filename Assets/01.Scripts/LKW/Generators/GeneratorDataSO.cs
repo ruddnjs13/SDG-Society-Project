@@ -16,5 +16,6 @@ namespace LKW.Generators
         public float generateTime;
         public float generateAmount;
         public float amountMultiplier;
+        public bool isNeedWater;
     }
 }

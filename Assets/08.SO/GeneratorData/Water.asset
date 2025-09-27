@@ -20,3 +20,4 @@ MonoBehaviour:
   generateTime: 4
   generateAmount: 10
   amountMultiplier: 1
+  isNeedWater: 1
