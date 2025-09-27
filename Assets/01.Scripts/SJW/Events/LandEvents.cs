@@ -1,6 +1,7 @@
 ﻿using Core.GameEvent;
 using LandSystem;
 using LKW.Generaters;
+using LKW.Generators;
 using UnityEngine;
 
 namespace _01.Scripts.SJW.Events
@@ -14,11 +15,11 @@ namespace _01.Scripts.SJW.Events
 
     public class BuildCompleteEvent : GameEvent
     {
-        public Transform targetTrm;
+        public Generator generator;
 
-        public BuildCompleteEvent Initializer(Transform target)
+        public BuildCompleteEvent Initializer(Generator target)
         {
-            targetTrm = target;
+            generator = target;
             return this;
         }
     }
@@ -36,11 +37,12 @@ namespace _01.Scripts.SJW.Events
 
     public class BuildRequestEvent : GameEvent
     {
-        public GeneratorData generatorData;
-
-        public BuildRequestEvent Initializer(GeneratorData data)
+        public GeneratorDataSO generatorData;
+        public Vector2 position;
+        public BuildRequestEvent Initializer(GeneratorDataSO data, Vector2 pos)
         {
             generatorData = data;
+            position = pos;
             return this;
         }
     }

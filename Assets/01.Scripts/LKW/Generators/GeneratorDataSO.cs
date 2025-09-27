@@ -6,8 +6,9 @@ using UnityEngine.Serialization;
 namespace LKW.Generators
 {
     [CreateAssetMenu(fileName = "GeneratorDataSO", menuName = "SO/GeneratorDataSO", order = 0)]
-    public class GeneratorDataSo : ScriptableObject
+    public class GeneratorDataSO : ScriptableObject
     {
+        public string generatorName;
         public GeneratorType generatorType;
         public WeatherType weatherType;
         public TimeZoneType timeZoneType;
@@ -15,5 +16,6 @@ namespace LKW.Generators
         public float generateTime;
         public float generateAmount;
         public float amountMultiplier;
+        public bool isNeedWater;
     }
 }

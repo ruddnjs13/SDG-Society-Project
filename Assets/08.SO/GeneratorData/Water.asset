@@ -12,8 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c33dd2f75b848ebaf7d40555a0579e6, type: 3}
   m_Name: Water
   m_EditorClassIdentifier: 
+  generatorName: "\uC218\uB825 \uBC1C\uC804\uAE30"
+  generatorType: 0
+  weatherType: 1
+  timeZoneType: 0
   generatorVisual: {fileID: -7704950875169511096, guid: f36cfe3d060a4344dbacd80b936adefb, type: 3}
   generateTime: 4
   generateAmount: 10
   amountMultiplier: 1
-  weatherType: 1
+  isNeedWater: 1
