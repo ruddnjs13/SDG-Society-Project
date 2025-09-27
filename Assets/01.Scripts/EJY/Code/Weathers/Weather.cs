@@ -68,7 +68,7 @@ namespace Code.Weathers
 
         private void SendEvent(SendEnvironmentData data, Sprite icon)
         {
-            environmentChannel.RaiseEvent(EnvironmentEvents.WeatherChangeEvent.Init(data, icon));
+            environmentChannel.RaiseEvent(EnvironmentEvents.EnvironmentChangeEvent.Init(data, icon));
         }
     }
 }

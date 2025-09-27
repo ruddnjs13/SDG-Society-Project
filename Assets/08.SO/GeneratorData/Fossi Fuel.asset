@@ -9,7 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7171e79813316404694d15dcc81c24ce, type: 3}
-  m_Name: GetEnergyView
+  m_Script: {fileID: 11500000, guid: 9c33dd2f75b848ebaf7d40555a0579e6, type: 3}
+  m_Name: Fossi Fuel
   m_EditorClassIdentifier: 
-  typeName: GetEnergyView
+  generatorVisual: {fileID: 4878787358618412594, guid: f36cfe3d060a4344dbacd80b936adefb, type: 3}
+  generateTime: 4
+  generateAmount: 10
+  amountMultiplier: 1
+  weatherType: 1

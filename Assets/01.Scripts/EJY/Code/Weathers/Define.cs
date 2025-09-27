@@ -14,10 +14,8 @@ namespace Code.Weathers
         Rainy = 4,
         ///<summary>바람부는 날씨</summary>
         Windy = 8,
-        ///<summary>눈오는 날씨</summary>
-        Snowy = 16,
         ///<summary>흐린 날씨</summary>
-        Cloudy = 32,
+        Cloudy = 16,
         
         Max
     }
@@ -26,9 +24,9 @@ namespace Code.Weathers
     {
         None = 0,
         ///<summary>아침</summary>
-        Morning = 64,
+        Morning = 32,
         ///<summary>밤</summary>
-        Night = 128,
+        Night = 64,
     }
 
     public struct SendEnvironmentData

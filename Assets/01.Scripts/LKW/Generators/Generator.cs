@@ -1,3 +1,4 @@
+using System;
 using LKW.Generaters.LKW.Events;
 using Code.Weathers;
 using Core.GameEvent;
@@ -12,19 +13,32 @@ namespace LKW.Generators
         [SerializeField] private PoolManagerSO poolManager;
         [SerializeField] private GameEventChannelSO energyChannel;
         [SerializeField] private PoolingItemSO energyItemPrefab;
+        [SerializeField] private SpriteRenderer spriteRenderer;
+        
         
         private  float _generateAmount;
         private  float _amountMultiplier;
-        public  WeatherType WeatherType { get; private set; }
+        
         public float GenerateTime {get; private set;}
         public float RemainingTime { get; set; } = 0f;
         
-        public void Initialize(GeneratorDataSO generatorData)
+        public SendEnvironmentData Data {get; set;}
+
+        public bool isRunning { get; private set; } = false;
+
+        public void Initialize(GeneratorDataSo generatorData)
         {
+            int typeBit = (int)generatorData.weatherType | (int)generatorData.timeZoneType;
+
+            Data = new SendEnvironmentData()
+            {
+                TypeBit = typeBit,
+            };
+           
             GenerateTime = generatorData.generateTime;
-            WeatherType = generatorData.weatherType;
             _generateAmount = generatorData.generateAmount;
             _amountMultiplier = generatorData.amountMultiplier;
+            spriteRenderer.sprite = generatorData.generatorVisual;
         }
 
         public void GenerateEnergy()
@@ -36,6 +50,26 @@ namespace LKW.Generators
             RemainingTime = 0f;
             
             GetEnergyView energyView = poolManager.Pop(energyItemPrefab) as GetEnergyView;
+            energyView.ShowEnergyView(transform.position+ new Vector3(0,0.5f,0));
+        }
+
+        public void StartGenerate()
+        {
+            isRunning = true;
+            RemainingTime = 0;
+        }
+
+        public void StopGenerate() => isRunning = false;
+
+        public void SetAmountMultiplier(float amount)
+        {
+            _amountMultiplier = amount;
+        }
+
+        [ContextMenu("Add Generator")]
+        public void AddGenerator()
+        {
+            GeneratorManager.Instance.AddGenerator(this);
         }
     }
 }
