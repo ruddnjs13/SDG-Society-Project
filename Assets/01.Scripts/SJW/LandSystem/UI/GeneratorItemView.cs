@@ -18,7 +18,7 @@ namespace LandSystem.UI
         [SerializeField] private TextMeshProUGUI generatorPenaltyText;
         [SerializeField] private Button buyButton;
 
-        private int currentAmount;
+        private GeneratorDataSO currentData;
         
         public void Initialize(GeneratorDataSO data)
         {
@@ -28,12 +28,12 @@ namespace LandSystem.UI
             generatorPenaltyText.SetText(""); //임시
             
             buyButton.onClick.AddListener(HandleRequestBuy);
-            currentAmount = (int)data.generateAmount;
+            currentData = data;
         }
 
         private void HandleRequestBuy()
         {
-            var evt = PointEvents.RequestGeneratorBuyEvent.Initializer(currentAmount);
+            var evt = PointEvents.RequestGeneratorBuyEvent.Initializer(currentData);
             pointChannel.RaiseEvent(evt);
         }
     }

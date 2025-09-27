@@ -1,4 +1,5 @@
 ﻿using Core.GameEvent;
+using LKW.Generators;
 
 namespace Events
 {
@@ -10,11 +11,11 @@ namespace Events
 
     public class RequestGeneratorBuyEvent : GameEvent
     {
-        public int wantCoin;
+        public GeneratorDataSO generatorData;
         
-        public RequestGeneratorBuyEvent Initializer(int coin)
+        public RequestGeneratorBuyEvent Initializer(GeneratorDataSO data)
         {
-            wantCoin = coin;
+            generatorData = data;
             return this;
         }
     }
