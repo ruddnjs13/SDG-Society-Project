@@ -26,7 +26,7 @@ namespace LKW.Generators
 
         public bool isRunning { get; private set; } = false;
 
-        public void Initialize(GeneratorDataSo generatorData)
+        public void Initialize(GeneratorDataSO generatorData)
         {
             int typeBit = (int)generatorData.weatherType | (int)generatorData.timeZoneType;
 
