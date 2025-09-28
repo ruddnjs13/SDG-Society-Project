@@ -25,16 +25,22 @@ namespace LKW.Generators
         public void ShowEnergyView(Vector3 position, int getAmount)
         {
             transform.position = position;
-            
+
             amountText.SetText($"+{getAmount}");
-            
-            Sequence seq  = DOTween.Sequence();
-            
+
+            Sequence seq = DOTween.Sequence();
+
             seq.Append(transform.DOScale(1.2f, scaleTime));
-            seq.AppendInterval(showDuration);
-            seq.Join(spriteRenderer.DOFade(1,fadeTime));
+
+            seq.Join(spriteRenderer.DOFade(1, fadeTime));
+            seq.Join(amountText.DOFade(1, fadeTime));
             seq.Join(transform.DOLocalMoveY(0.6f, moveTime));
+
+            seq.AppendInterval(showDuration);
+
             seq.Append(spriteRenderer.DOFade(0, fadeTime));
+            seq.Join(amountText.DOFade(0, fadeTime));
+
             seq.AppendCallback(() =>
             {
                 _myPool.Push(this);

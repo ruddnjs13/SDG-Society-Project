@@ -14,7 +14,7 @@ namespace LKW.Generators
         [SerializeField] private GameEventChannelSO landChannel;
         [SerializeField] private GameEventChannelSO environmentChannel;
         
-        [field:SerializeField] public int EnvironmentBit { get; private set; }
+        [field:SerializeField] public SendEnvironmentData EnvironmentData { get; private set; }
         
         public List<Generator> generators = new List<Generator>();
 
@@ -34,7 +34,7 @@ namespace LKW.Generators
             foreach (var generator in generators)
             {
                 generator.RemainingTime += Time.deltaTime;
-                if (generator.RemainingTime >= generator.GenerateTime)
+                if (generator.RemainingTime >= generator.GenerateTime && generator.IsRunning)
                 {
                     generator.GenerateEnergy();
                     generator.RemainingTime = 0;
@@ -45,6 +45,7 @@ namespace LKW.Generators
         public void AddGenerator(Generator generator)
         {
             generators.Add(generator);
+            generator.UpdateEnvironment(EnvironmentData);
         }
         
         private void HandleBuildCompleteEvent(BuildCompleteEvent evt)
@@ -54,15 +55,11 @@ namespace LKW.Generators
 
         private void HandleEnvironmentChangeEvent(EnvironmentChangeEvent evt)
         {
-
-            EnvironmentBit = evt.data.TypeBit;
+            EnvironmentData = evt.data;
             
             foreach (var generator in generators)
             {
-                if (generator.Data.CanWorkByWeather(evt.data))
-                    generator.StartGenerate();
-                else
-                    generator.StopGenerate();
+               generator.UpdateEnvironment(evt.data);
             }
         }
 

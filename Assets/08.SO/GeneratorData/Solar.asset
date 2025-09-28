@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Solar
   m_EditorClassIdentifier: 
   generatorType: 0
-  weatherType: 1
-  timeZoneType: 64
+  goodWeatherType: 2
+  badWeatherType: 20
+  timeZoneType: 32
   generatorVisual: {fileID: 9163821189459848373, guid: f36cfe3d060a4344dbacd80b936adefb, type: 3}
   generateTime: 4
   generateAmount: 10

@@ -17,10 +17,14 @@ namespace _01.Scripts.LKW.Generators
             _spriteRenderer = GetComponent<SpriteRenderer>();
         }
 
-
-        public void SetVisual(Sprite visual,bool isRunning, float amountMultiplier)
+        public void InitVisual(Sprite visual)
         {
             _spriteRenderer.sprite = visual;
+        }
+
+
+        public void SetVisualByWeather(bool isRunning, float amountMultiplier = 1f)
+        {
             _spriteRenderer.color = isRunning ? _runningColor : _stopRunningColor;
 
             if (Mathf.Approximately(amountMultiplier, 1f))

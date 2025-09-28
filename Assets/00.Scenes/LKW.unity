@@ -148,8 +148,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92fd778788b0b7f468d4897ddec3374a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  environmentChannel: {fileID: 11400000, guid: 17ce05b25afff944daca76360d1b3be6, type: 2}
   generatorItem: {fileID: 939661511344695618, guid: f8f0341800f30de49b1391a3b6de3d94, type: 3}
   generatorData: {fileID: 11400000, guid: bdae04f320bf36a4f8489b74baba6040, type: 2}
+  typeBit: 100010
 --- !u!4 &127280041
 Transform:
   m_ObjectHideFlags: 0
@@ -802,7 +804,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   landChannel: {fileID: 11400000, guid: 308ec28a89e7dc348989415f7e83c979, type: 2}
   environmentChannel: {fileID: 11400000, guid: 17ce05b25afff944daca76360d1b3be6, type: 2}
-  <EnvironmentBit>k__BackingField: 0
   generators: []
 --- !u!4 &1823257404
 Transform:
