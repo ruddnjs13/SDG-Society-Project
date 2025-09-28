@@ -60,6 +60,7 @@ namespace LandSystem
             
             _currentData = evt.generatorData;
             buildingIcon.sprite = evt.generatorData.generatorVisual;
+            buildingIcon.transform.position = inputData.GetWorldPointPos();
         }
 
         private void HandleBuildGenerator()
