@@ -9,6 +9,7 @@ namespace LKW.Generators
     public class GeneratorDataSO : ScriptableObject
     {
         public string generatorName;
+        public string generatorKorName;
         public GeneratorType generatorType;
         public WeatherType goodWeatherType;
         public WeatherType badWeatherType;
