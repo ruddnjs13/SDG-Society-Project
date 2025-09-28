@@ -10,7 +10,6 @@ namespace LKW.Generators
     {
         [Header("Names")]
         public string generatorName;
-        public string generatorKorName;
         
         [Header("Want types")]
         public GeneratorType generatorType;
@@ -20,6 +19,8 @@ namespace LKW.Generators
         
         [Header("Visuals")]
         public Sprite generatorVisual;
+        public Sprite[] goodWeatherVisual;
+        public Sprite[] badWeatherVisual;
         
         [Header("Values")]
         public float generateTime;

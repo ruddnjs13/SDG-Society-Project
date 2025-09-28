@@ -1,6 +1,4 @@
-﻿using System;
-using _01.Scripts.LKW.Generators;
-using InputSystem;
+﻿using InputSystem;
 using LKW.Generators;
 using UnityEngine;
 
@@ -8,13 +6,8 @@ namespace LKW.UI
 {
     public class RuntimeUI : MonoBehaviour
     {
-        private GeneratorViewUI generatorViewUI;
+        [SerializeField] private GeneratorViewUI generatorViewUI;
         [SerializeField] private InputControllerSO inputController;
-
-        private void Awake()
-        {
-            generatorViewUI = GetComponentInChildren<GeneratorViewUI>();
-        }
 
         private void OnEnable()
         {
@@ -35,9 +28,12 @@ namespace LKW.UI
 
             if (hit != null && hit.TryGetComponent(out Generator generator))
             {
-                Debug.Log(generator.MyData);
-                Debug.Log(generatorViewUI);
                 generatorViewUI.SetView(generator.MyData, generator.AmountMultiplier);
+                generatorViewUI.gameObject.SetActive(true);
+            }
+            else
+            {
+                generatorViewUI.gameObject.SetActive(false);
             }
         }
     }
