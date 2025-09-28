@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Clear
   m_EditorClassIdentifier: 
   weatherType: 2
-  weatherIcon: {fileID: 0}
+  weatherIcon: {fileID: -3799863423980482678, guid: e638db4d391f97848903ffcfacc688f6, type: 3}

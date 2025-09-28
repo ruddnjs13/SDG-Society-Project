@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Rainy
   m_EditorClassIdentifier: 
   weatherType: 4
-  weatherIcon: {fileID: 0}
+  weatherIcon: {fileID: 4355254178158111452, guid: e638db4d391f97848903ffcfacc688f6, type: 3}
