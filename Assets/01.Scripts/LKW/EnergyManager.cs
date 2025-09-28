@@ -1,13 +1,13 @@
-using System;
 using Core.GameEvent;
 using LKW.Generaters.LKW.Events;
 using UnityEngine;
-using UnityEngine.Rendering;
+using UnityEngine.Events;
 
 namespace LKW
 {
     public class EnergyManager : MonoSingleton<EnergyManager>
     {
+        public UnityEvent<int, int> OnEnergyChangeValue;
         [SerializeField] private GameEventChannelSO energyChannel;
 
         private int _energy = 0;
@@ -24,11 +24,15 @@ namespace LKW
         private void Awake()
         {
             energyChannel.AddListener<GetEnergyEvent>(HandleGetEnergyEvent);
+            OnEnergyChangeValue?.Invoke(Energy, Energy);
         }
 
         private void HandleGetEnergyEvent(GetEnergyEvent evt)
         {
+            int tempValue = Energy;
+            
             Energy += evt.getAmount;
+            OnEnergyChangeValue?.Invoke(Energy, tempValue);
         }
     }
 }
