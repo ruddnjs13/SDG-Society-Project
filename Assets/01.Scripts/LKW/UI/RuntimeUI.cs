@@ -28,9 +28,12 @@ namespace LKW.UI
 
             if (hit != null && hit.TryGetComponent(out Generator generator))
             {
-                Debug.Log(generator.MyData);
-                Debug.Log(generatorViewUI);
                 generatorViewUI.SetView(generator.MyData, generator.AmountMultiplier);
+                generatorViewUI.gameObject.SetActive(true);
+            }
+            else
+            {
+                generatorViewUI.gameObject.SetActive(false);
             }
         }
     }
