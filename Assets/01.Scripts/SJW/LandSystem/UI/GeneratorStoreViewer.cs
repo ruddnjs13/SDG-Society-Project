@@ -54,10 +54,10 @@ namespace LandSystem.UI
             warningText.gameObject.SetActive(true);
             warningText.transform.rotation = Quaternion.identity;
             
-            warningText.DOShakeRotation(0.5f, 10f).SetEase(Ease.OutCirc).OnComplete((() =>
+            warningText.DOShakeRotation(0.5f, 10f).SetEase(Ease.OutCirc).OnComplete(() =>
             {
                 warningText.gameObject.SetActive(false);
-            }));
+            });
         }
 
         public void HandlePopupGeneratorStore()

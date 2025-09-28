@@ -479,6 +479,7 @@ MonoBehaviour:
   generatorNameText: {fileID: 1197857238246141809}
   generatorValueText: {fileID: 8144337847072781725}
   generatorPenaltyText: {fileID: 8618038615476440391}
+  buyButtonText: {fileID: 7018499391254818064}
   buyButton: {fileID: 7667311924934549740}
 --- !u!1 &3782730631734836933
 GameObject:
@@ -545,10 +546,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uAD6C\uB9E4"
+  m_text: "\uAD6C\uB9E4: 00\uCF54\uC778"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d44135f52c143444493547ec42d335b6, type: 2}
+  m_sharedMaterial: {fileID: -8579534151928066730, guid: d44135f52c143444493547ec42d335b6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
