@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using _01.Scripts.SJW.Events;
 using Core.GameEvent;
+using Events;
 using LKW.Generators;
 using RuddnjsLib.Dependencies;
 using UnityEngine;
@@ -12,6 +13,7 @@ namespace LandSystem
     public class LandGridManager : MonoBehaviour, IDependencyProvider
     {
         [SerializeField] private GameEventChannelSO landChannel;
+        [SerializeField] private GameEventChannelSO pointChannel;
         [SerializeField] private Tilemap canBuildingMap;
 
         [Header("Generators")] 
@@ -111,8 +113,12 @@ namespace LandSystem
 
             if (!IsPossibleBuild(pos, data.isNeedWater))
             {
-                var evt = LandEvents.BuildCompleteEvent.Initializer(item);
-                landChannel.RaiseEvent(evt);
+                var completeEvt = LandEvents.BuildCompleteEvent.Initializer(item);
+                landChannel.RaiseEvent(completeEvt);
+                
+                var buyEvt = PointEvents.AddCoinEvent.Initializer(-data.needCoinCount);
+                pointChannel.RaiseEvent(buyEvt);
+
             }
             else
             {

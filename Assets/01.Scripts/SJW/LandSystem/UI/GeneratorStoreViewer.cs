@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using _01.Scripts.SJW.Events;
 using Core.GameEvent;
 using DG.Tweening;
 using Events;
@@ -10,12 +11,15 @@ namespace LandSystem.UI
 {
     public class GeneratorStoreViewer : MonoBehaviour
     {
-        [SerializeField] private GameEventChannelSO pointChannel; //임시
+        [SerializeField] private GameEventChannelSO landChannel;
+        [SerializeField] private GameEventChannelSO pointChannel;
         
         [SerializeField] private List<GeneratorDataSO> datas;
         [SerializeField] private GeneratorItemView itemViewPrefab;
         [SerializeField] private Transform contentsParent;
         [SerializeField] private RectTransform panel;
+        [SerializeField] private Transform warningText;
+        
         private bool isOpen;
 
         private void Awake()
@@ -27,18 +31,33 @@ namespace LandSystem.UI
             });
 
             panel.anchoredPosition = new Vector2(-panel.sizeDelta.x, 0);
+            warningText.gameObject.SetActive(false);
             
-            pointChannel.AddListener<RequestGeneratorBuyEvent>(HandlePopupStore);
+            landChannel.AddListener<BuyCompleteGeneratorEvent>(HandlePopupStore);
+            pointChannel.AddListener<BuyFailEvent>(HandleBuyFailWarningText);
         }
 
         private void OnDestroy()
         {
-            pointChannel.RemoveListener<RequestGeneratorBuyEvent>(HandlePopupStore);
+            landChannel.RemoveListener<BuyCompleteGeneratorEvent>(HandlePopupStore);
+            pointChannel.RemoveListener<BuyFailEvent>(HandleBuyFailWarningText);
         }
 
-        private void HandlePopupStore(RequestGeneratorBuyEvent evt)
+        private void HandlePopupStore(BuyCompleteGeneratorEvent evt)
         {
             HandlePopupGeneratorStore();
+        }
+        
+        private void HandleBuyFailWarningText(BuyFailEvent evt)
+        {
+            DOTween.Kill(warningText);
+            warningText.gameObject.SetActive(true);
+            warningText.transform.rotation = Quaternion.identity;
+            
+            warningText.DOShakeRotation(0.5f, 10f).SetEase(Ease.OutCirc).OnComplete((() =>
+            {
+                warningText.gameObject.SetActive(false);
+            }));
         }
 
         public void HandlePopupGeneratorStore()

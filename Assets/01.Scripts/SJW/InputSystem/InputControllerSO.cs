@@ -8,15 +8,16 @@ namespace InputSystem
     public class InputControllerSO : ScriptableObject, Controls.IPlayerActions
     {
         private Controls _control;
-        
+
         public event Action OnSelectPressed;
         public event Action OnSelectReleased;
         public event Action<float> OnMoveScrolled;
+        public event Action OnCancelPressed;
 
         public float ScrollValue { get; private set; }
         public Vector2 MoveDir { get; private set; }
-        private Vector2 _screenPointPos; 
-        
+        private Vector2 _screenPointPos;
+
         private void OnEnable()
         {
             _control ??= new Controls();
@@ -37,9 +38,9 @@ namespace InputSystem
 
         public void OnSelect(InputAction.CallbackContext context)
         {
-            if(context.performed)
+            if (context.performed)
                 OnSelectPressed?.Invoke();
-            else if(context.canceled)
+            else if (context.canceled)
                 OnSelectReleased?.Invoke();
         }
 
@@ -48,9 +49,9 @@ namespace InputSystem
             Vector2 pos = Camera.main.ScreenToWorldPoint(_screenPointPos);
             return pos;
         }
-        
+
         public Vector2 GetScreenPointPos() => _screenPointPos;
-        
+
         public void OnMousePos(InputAction.CallbackContext context)
         {
             _screenPointPos = context.ReadValue<Vector2>();
@@ -63,6 +64,20 @@ namespace InputSystem
                 float value = context.ReadValue<float>();
                 OnMoveScrolled?.Invoke(value);
             }
+        }
+
+        public void OnCancel(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+                OnCancelPressed?.Invoke();
+        }
+
+        public void ClearAction()
+        {
+            OnSelectPressed = null;
+            OnSelectReleased = null;
+            OnMoveScrolled = null;
+            OnCancelPressed = null;
         }
     }
 }

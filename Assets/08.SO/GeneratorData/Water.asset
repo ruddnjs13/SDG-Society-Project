@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Water
   m_EditorClassIdentifier: 
   generatorName: "\uC218\uB825 \uBC1C\uC804\uAE30"
+  generatorKorName: 
   generatorType: 1
   goodWeatherType: 4
   badWeatherType: 0
@@ -21,4 +22,5 @@ MonoBehaviour:
   generateTime: 4
   generateAmount: 10
   amountMultiplier: 1
+  needCoinCount: 2
   isNeedWater: 1
