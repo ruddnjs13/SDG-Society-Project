@@ -11,14 +11,11 @@ namespace LKW.UI
         [SerializeField] private TextMeshProUGUI amountText;
         [SerializeField] private TextMeshProUGUI durationText;
 
-        private void Start()
-        {
-        }
 
         public void SetView(GeneratorDataSO generatorData, float amountMultiplier)
         {
             Debug.Log(generatorData);
-            headerText.text = generatorData.generatorKorName;
+            headerText.text = generatorData.generatorName;
             amountText.text = $"발전량 : {amountMultiplier * generatorData.generateAmount}";
             durationText.text =  $"발전시간 : {generatorData.generateTime}";
         }
