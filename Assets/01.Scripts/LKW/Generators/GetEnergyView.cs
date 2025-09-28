@@ -1,6 +1,7 @@
 ﻿using System;
 using DG.Tweening;
 using RuddnjsPool;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -12,6 +13,7 @@ namespace LKW.Generators
     public class GetEnergyView : MonoBehaviour, IPoolable
     {
         [SerializeField] private SpriteRenderer spriteRenderer;
+        [SerializeField] private TextMeshPro amountText;
         [field:SerializeField] public PoolingItemSO PoolingType { get; set; }
         public GameObject GameObject => gameObject;
 
@@ -20,17 +22,25 @@ namespace LKW.Generators
         [SerializeField] private float scaleTime = 0.3f;
         [SerializeField] private float fadeTime = 0.3f;
 
-        public void ShowEnergyView(Vector3 position)
+        public void ShowEnergyView(Vector3 position, int getAmount)
         {
             transform.position = position;
-            
-            Sequence seq  = DOTween.Sequence();
-            
+
+            amountText.SetText($"+{getAmount}");
+
+            Sequence seq = DOTween.Sequence();
+
             seq.Append(transform.DOScale(1.2f, scaleTime));
-            seq.AppendInterval(showDuration);
-            seq.Join(spriteRenderer.DOFade(1,fadeTime));
+
+            seq.Join(spriteRenderer.DOFade(1, fadeTime));
+            seq.Join(amountText.DOFade(1, fadeTime));
             seq.Join(transform.DOLocalMoveY(0.6f, moveTime));
+
+            seq.AppendInterval(showDuration);
+
             seq.Append(spriteRenderer.DOFade(0, fadeTime));
+            seq.Join(amountText.DOFade(0, fadeTime));
+
             seq.AppendCallback(() =>
             {
                 _myPool.Push(this);

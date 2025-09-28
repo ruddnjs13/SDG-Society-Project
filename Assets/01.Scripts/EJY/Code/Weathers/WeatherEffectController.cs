@@ -4,8 +4,6 @@ using Code.Events;
 using Core.GameEvent;
 using UnityEngine;
 using UnityEngine.Rendering;
-using UnityEngine.Rendering.Universal;
-using UnityEngine.Serialization;
 
 namespace Code.Weathers
 {

@@ -1,10 +1,14 @@
 using System;
+using _01.Scripts.LKW.Generators;
 using LKW.Generaters.LKW.Events;
 using Code.Weathers;
+using Code.Weathers.Utility;
 using Core.GameEvent;
+using LandSystem;
 using RuddnjsPool;
 using UnityEngine;
 using UnityEngine.Serialization;
+using VHierarchy.Libs;
 
 namespace LKW.Generators
 {
@@ -13,8 +17,8 @@ namespace LKW.Generators
         [SerializeField] private PoolManagerSO poolManager;
         [SerializeField] private GameEventChannelSO energyChannel;
         [SerializeField] private PoolingItemSO energyItemPrefab;
-        [SerializeField] private SpriteRenderer spriteRenderer;
         
+        private GeneratorRenderer _generatorRenderer;
         
         private  float _generateAmount;
         private  float _amountMultiplier;
@@ -22,23 +26,39 @@ namespace LKW.Generators
         public float GenerateTime {get; private set;}
         public float RemainingTime { get; set; } = 0f;
         
-        public SendEnvironmentData Data {get; set;}
+        public SendEnvironmentData TimeZoneData {get; set;}
+        public SendEnvironmentData GoodWeatherData {get; set;}
+        public SendEnvironmentData BadWeatherData {get; set;}
 
-        public bool isRunning { get; private set; } = false;
+        public bool IsRunning { get; private set; } = false;
+
+        private void Awake()
+        {
+            _generatorRenderer = GetComponent<GeneratorRenderer>();
+        }
 
         public void Initialize(GeneratorDataSO generatorData)
         {
-            int typeBit = (int)generatorData.weatherType | (int)generatorData.timeZoneType;
-
-            Data = new SendEnvironmentData()
-            {
-                TypeBit = typeBit,
-            };
-           
             GenerateTime = generatorData.generateTime;
             _generateAmount = generatorData.generateAmount;
             _amountMultiplier = generatorData.amountMultiplier;
-            spriteRenderer.sprite = generatorData.generatorVisual;
+            _generatorRenderer.InitVisual(generatorData.generatorVisual);
+            _generatorRenderer.SetVisualByWeather(IsRunning, _amountMultiplier);
+
+            GoodWeatherData = new SendEnvironmentData()
+            {
+                TypeBit = (int)generatorData.goodWeatherType
+            };
+            
+            BadWeatherData = new SendEnvironmentData()
+            {
+                TypeBit = (int)generatorData.badWeatherType,
+            };
+
+            TimeZoneData = new SendEnvironmentData()
+            {
+                TypeBit = (int)generatorData.timeZoneType
+            };
         }
 
         public void GenerateEnergy()
@@ -50,20 +70,40 @@ namespace LKW.Generators
             RemainingTime = 0f;
             
             GetEnergyView energyView = poolManager.Pop(energyItemPrefab) as GetEnergyView;
-            energyView.ShowEnergyView(transform.position+ new Vector3(0,0.5f,0));
+            energyView.ShowEnergyView(transform.position+ new Vector3(0,0.5f,0), getAmount);
         }
 
+        public void UpdateEnvironment(SendEnvironmentData currentData)
+        {
+            if (!currentData.CanWorkByWeather(TimeZoneData))
+            {
+                _amountMultiplier = 1f;
+                StopGenerate();
+                return;
+            }
+
+            if (currentData.CanWorkByWeather(GoodWeatherData))
+                _amountMultiplier = 1.5f;
+            else if (currentData.CanWorkByWeather(BadWeatherData))
+                _amountMultiplier = 0.5f;
+            else
+                _amountMultiplier = 1f;
+            
+            StartGenerate();
+        }
+        
+        
         public void StartGenerate()
         {
-            isRunning = true;
+            IsRunning = true;
+            _generatorRenderer.SetVisualByWeather(IsRunning, _amountMultiplier);
             RemainingTime = 0;
         }
 
-        public void StopGenerate() => isRunning = false;
-
-        public void SetAmountMultiplier(float amount)
+        public void StopGenerate()
         {
-            _amountMultiplier = amount;
+            IsRunning = false;
+            _generatorRenderer.SetVisualByWeather(IsRunning, _amountMultiplier);
         }
 
         [ContextMenu("Add Generator")]
