@@ -13,12 +13,16 @@ MonoBehaviour:
   m_Name: Solar
   m_EditorClassIdentifier: 
   generatorName: "\uD0DC\uC591\uAD11 \uBC1C\uC804\uAE30"
-  generatorKorName: 
   generatorType: 0
   goodWeatherType: 2
   badWeatherType: 20
   timeZoneType: 32
   generatorVisual: {fileID: 9163821189459848373, guid: f36cfe3d060a4344dbacd80b936adefb, type: 3}
+  goodWeatherVisual:
+  - {fileID: 3864091044136327479, guid: e638db4d391f97848903ffcfacc688f6, type: 3}
+  badWeatherVisual:
+  - {fileID: 4355254178158111452, guid: e638db4d391f97848903ffcfacc688f6, type: 3}
+  - {fileID: -4086970153546226885, guid: e638db4d391f97848903ffcfacc688f6, type: 3}
   generateTime: 4
   generateAmount: 10
   amountMultiplier: 1
