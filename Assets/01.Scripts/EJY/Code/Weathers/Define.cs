@@ -20,6 +20,7 @@ namespace Code.Weathers
         Max
     }
     
+    [Flags]
     public enum TimeZoneType
     {
         None = 0,
@@ -27,6 +28,7 @@ namespace Code.Weathers
         Morning = 32,
         ///<summary>밤</summary>
         Night = 64,
+        
     }
 
     public struct SendEnvironmentData

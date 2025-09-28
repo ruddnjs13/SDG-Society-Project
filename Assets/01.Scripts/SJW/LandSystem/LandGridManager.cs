@@ -111,8 +111,9 @@ namespace LandSystem
 
             if (!IsPossibleBuild(pos, data.isNeedWater))
             {
-                var evt = LandEvents.BuildCompleteEvent.Initializer(item);
+                BuildCompleteEvent evt = LandEvents.BuildCompleteEvent.Initializer(item);
                 landChannel.RaiseEvent(evt);
+                Debug.Log("발생");
             }
             else
             {

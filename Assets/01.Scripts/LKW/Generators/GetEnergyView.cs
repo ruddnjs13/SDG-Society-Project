@@ -18,9 +18,9 @@ namespace LKW.Generators
         public GameObject GameObject => gameObject;
 
         [SerializeField] private float showDuration = 1;
-        [SerializeField] private float moveTime = 0.8f;
-        [SerializeField] private float scaleTime = 0.3f;
-        [SerializeField] private float fadeTime = 0.3f;
+        [SerializeField] private float moveTime = 1f;
+        [SerializeField] private float scaleTime = 0.6f;
+        [SerializeField] private float fadeTime = 0.6f;
 
         public void ShowEnergyView(Vector3 position, int getAmount)
         {
@@ -34,7 +34,7 @@ namespace LKW.Generators
 
             seq.Join(spriteRenderer.DOFade(1, fadeTime));
             seq.Join(amountText.DOFade(1, fadeTime));
-            seq.Join(transform.DOLocalMoveY(0.6f, moveTime));
+            seq.Join(transform.DOMoveY(transform.position.y + 0.6f, moveTime));
 
             seq.AppendInterval(showDuration);
 
@@ -56,11 +56,10 @@ namespace LKW.Generators
 
         public void ResetItem()
         {
-            // 모든 트윈 종료
             transform.DOKill();
             spriteRenderer.DOKill();
 
-            // 상태 초기화
+            transform.position = Vector3.zero;
             transform.localScale = Vector3.one;
             var color = spriteRenderer.color;
             color.a = 1f;
