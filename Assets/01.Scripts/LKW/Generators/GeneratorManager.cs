@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using _01.Scripts.SJW.Events;
+﻿using System.Collections.Generic;
 using Code.Events;
 using Code.Weathers;
-using Code.Weathers.Utility;
 using Core.GameEvent;
+using Events;
 using UnityEngine;
 
 namespace LKW.Generators
