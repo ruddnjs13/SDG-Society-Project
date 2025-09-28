@@ -11,6 +11,7 @@ namespace _01.Scripts.SJW.Events
         public static readonly BuildCompleteEvent BuildCompleteEvent = new BuildCompleteEvent();
         public static readonly BuildFailEvent BuildFailEvent = new BuildFailEvent();
         public static readonly BuildRequestEvent BuildRequestEvent = new BuildRequestEvent();
+        public static readonly BuyCompleteGeneratorEvent BuyCompleteGeneratorEvent = new BuyCompleteGeneratorEvent();
     }
 
     public class BuildCompleteEvent : GameEvent
@@ -46,4 +47,15 @@ namespace _01.Scripts.SJW.Events
             return this;
         }
     }
+    public class BuyCompleteGeneratorEvent : GameEvent
+    {
+        public GeneratorDataSO generatorData;
+        
+        public BuyCompleteGeneratorEvent Initializer(GeneratorDataSO data)
+        {
+            generatorData = data;
+            return this;
+        }
+    }
+    
 }

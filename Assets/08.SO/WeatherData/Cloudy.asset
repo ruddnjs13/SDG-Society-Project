@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Cloudy
   m_EditorClassIdentifier: 
   weatherType: 16
-  weatherIcon: {fileID: 0}
+  weatherIcon: {fileID: -772192194300870529, guid: e638db4d391f97848903ffcfacc688f6, type: 3}

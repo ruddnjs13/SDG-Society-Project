@@ -22,4 +22,5 @@ MonoBehaviour:
   generateTime: 4
   generateAmount: 10
   amountMultiplier: 1
+  needCoinCount: 2
   isNeedWater: 0
