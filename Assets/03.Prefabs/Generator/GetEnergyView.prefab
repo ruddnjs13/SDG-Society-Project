@@ -73,9 +73,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingLayerID: 1567821985
+  m_SortingLayer: 4
+  m_SortingOrder: 20
   m_Sprite: {fileID: -7213742777133032008, guid: 72d522d55098cca46b042ec23143c6b1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -137,9 +137,9 @@ MonoBehaviour:
   amountText: {fileID: 954903337684584809}
   <PoolingType>k__BackingField: {fileID: 11400000, guid: 7adc7190034de7d49b59d4ad00d22d8c, type: 2}
   showDuration: 1
-  moveTime: 0.8
-  scaleTime: 0.3
-  fadeTime: 0.3
+  moveTime: 1
+  scaleTime: 0.6
+  fadeTime: 0.6
 --- !u!1 &5313915356862746863
 GameObject:
   m_ObjectHideFlags: 0
@@ -218,8 +218,8 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1567821985
+  m_SortingLayer: 4
   m_SortingOrder: 20
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &954903337684584809

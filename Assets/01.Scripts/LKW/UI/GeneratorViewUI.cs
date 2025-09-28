@@ -1,4 +1,5 @@
-﻿using LKW.Generators;
+﻿using System;
+using LKW.Generators;
 using TMPro;
 using UnityEngine;
 
@@ -10,11 +11,16 @@ namespace LKW.UI
         [SerializeField] private TextMeshProUGUI amountText;
         [SerializeField] private TextMeshProUGUI durationText;
 
-        public void SetView(GeneratorDataSO generatorData, int amountMultiplier)
+        private void Start()
         {
-            headerText.SetText(generatorData.generatorKorName);
-            amountText.SetText($"발전량 : {amountMultiplier * generatorData.generateAmount}");
-            durationText.SetText($"발전시간 : {generatorData.generateTime}");
+        }
+
+        public void SetView(GeneratorDataSO generatorData, float amountMultiplier)
+        {
+            Debug.Log(generatorData);
+            headerText.text = generatorData.generatorKorName;
+            amountText.text = $"발전량 : {amountMultiplier * generatorData.generateAmount}";
+            durationText.text =  $"발전시간 : {generatorData.generateTime}";
         }
     }
 }

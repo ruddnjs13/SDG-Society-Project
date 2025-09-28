@@ -17,7 +17,7 @@ MonoBehaviour:
   generatorType: 1
   goodWeatherType: 4
   badWeatherType: 0
-  timeZoneType: 0
+  timeZoneType: -1
   generatorVisual: {fileID: -7704950875169511096, guid: f36cfe3d060a4344dbacd80b936adefb, type: 3}
   generateTime: 4
   generateAmount: 10

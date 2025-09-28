@@ -15,6 +15,7 @@ namespace LKW.Generators
 {
     public class Generator : MonoBehaviour
     {
+        public UnityEvent OnBuildEvent;
         public UnityEvent generatorEvent;
         
         [SerializeField] private PoolManagerSO poolManager;
@@ -24,7 +25,7 @@ namespace LKW.Generators
         private GeneratorRenderer _generatorRenderer;
         
         private  float _generateAmount;
-        private  float _amountMultiplier;
+        public  float AmountMultiplier { get; private set; }
         
         public float GenerateTime {get; private set;}
         public float RemainingTime { get; set; } = 0f;
@@ -32,6 +33,8 @@ namespace LKW.Generators
         public SendEnvironmentData TimeZoneData {get; set;}
         public SendEnvironmentData GoodWeatherData {get; set;}
         public SendEnvironmentData BadWeatherData {get; set;}
+        
+        public GeneratorDataSO MyData { get; private set; }
 
         public bool IsRunning { get; private set; } = false;
 
@@ -42,11 +45,13 @@ namespace LKW.Generators
 
         public void Initialize(GeneratorDataSO generatorData)
         {
+            MyData = generatorData;
+            
             GenerateTime = generatorData.generateTime;
             _generateAmount = generatorData.generateAmount;
-            _amountMultiplier = generatorData.amountMultiplier;
+            AmountMultiplier = generatorData.amountMultiplier;
             _generatorRenderer.InitVisual(generatorData.generatorVisual);
-            _generatorRenderer.SetVisualByWeather(IsRunning, _amountMultiplier);
+            _generatorRenderer.SetVisualByWeather(IsRunning, AmountMultiplier);
 
             GoodWeatherData = new SendEnvironmentData()
             {
@@ -62,13 +67,15 @@ namespace LKW.Generators
             {
                 TypeBit = (int)generatorData.timeZoneType
             };
+            
+            OnBuildEvent?.Invoke();
         }
 
         public void GenerateEnergy()
         {
             generatorEvent?.Invoke();
             
-            int getAmount = Mathf.RoundToInt(_generateAmount * _amountMultiplier); 
+            int getAmount = Mathf.RoundToInt(_generateAmount * AmountMultiplier); 
             
             GetEnergyEvent evt = EnergyEvents.GetEnergyEvent.Initializer(getAmount);
             energyChannel.RaiseEvent(evt);
@@ -82,17 +89,17 @@ namespace LKW.Generators
         {
             if (!currentData.CanWorkByWeather(TimeZoneData))
             {
-                _amountMultiplier = 1f;
+                AmountMultiplier = 1f;
                 StopGenerate();
                 return;
             }
 
             if (currentData.CanWorkByWeather(GoodWeatherData))
-                _amountMultiplier = 1.5f;
+                AmountMultiplier = 1.5f;
             else if (currentData.CanWorkByWeather(BadWeatherData))
-                _amountMultiplier = 0.5f;
+                AmountMultiplier = 0.5f;
             else
-                _amountMultiplier = 1f;
+                AmountMultiplier = 1f;
             
             StartGenerate();
         }
@@ -101,14 +108,14 @@ namespace LKW.Generators
         public void StartGenerate()
         {
             IsRunning = true;
-            _generatorRenderer.SetVisualByWeather(IsRunning, _amountMultiplier);
+            _generatorRenderer.SetVisualByWeather(IsRunning, AmountMultiplier);
             RemainingTime = 0;
         }
 
         public void StopGenerate()
         {
             IsRunning = false;
-            _generatorRenderer.SetVisualByWeather(IsRunning, _amountMultiplier);
+            _generatorRenderer.SetVisualByWeather(IsRunning, AmountMultiplier);
         }
 
         [ContextMenu("Add Generator")]
