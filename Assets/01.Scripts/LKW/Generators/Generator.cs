@@ -7,6 +7,7 @@ using Core.GameEvent;
 using LandSystem;
 using RuddnjsPool;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Serialization;
 using VHierarchy.Libs;
 
@@ -14,6 +15,8 @@ namespace LKW.Generators
 {
     public class Generator : MonoBehaviour
     {
+        public UnityEvent generatorEvent;
+        
         [SerializeField] private PoolManagerSO poolManager;
         [SerializeField] private GameEventChannelSO energyChannel;
         [SerializeField] private PoolingItemSO energyItemPrefab;
@@ -63,6 +66,8 @@ namespace LKW.Generators
 
         public void GenerateEnergy()
         {
+            generatorEvent?.Invoke();
+            
             int getAmount = Mathf.RoundToInt(_generateAmount * _amountMultiplier); 
             
             GetEnergyEvent evt = EnergyEvents.GetEnergyEvent.Initializer(getAmount);

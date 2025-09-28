@@ -4,7 +4,7 @@ using LKW.Generaters.LKW.Events;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-namespace LKW.Generators.LKW
+namespace LKW
 {
     public class EnergyManager : MonoSingleton<EnergyManager>
     {
