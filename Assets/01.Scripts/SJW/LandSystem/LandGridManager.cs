@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using _01.Scripts.SJW.Events;
-using Core.GameEvent;
 using Events;
+using Core.GameEvent;
 using LKW.Generators;
 using RuddnjsLib.Dependencies;
 using UnityEngine;

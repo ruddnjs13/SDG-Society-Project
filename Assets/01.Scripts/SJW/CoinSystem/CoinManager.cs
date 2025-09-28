@@ -1,6 +1,4 @@
-﻿using System;
-using _01.Scripts.SJW.Events;
-using Core.GameEvent;
+﻿using Core.GameEvent;
 using Events;
 using UnityEngine;
 
