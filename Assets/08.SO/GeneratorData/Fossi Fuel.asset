@@ -12,16 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c33dd2f75b848ebaf7d40555a0579e6, type: 3}
   m_Name: Fossi Fuel
   m_EditorClassIdentifier: 
-  generatorName: "\uD654\uC11D \uC5F0\uB8CC \uBC1C\uC804\uAE30"
-  generatorType: 0
+  generatorName: "\uD654\uB825 \uBC1C\uC804\uC18C"
+  generatorType: 3
   goodWeatherType: 0
   badWeatherType: 0
   timeZoneType: -1
-  generatorVisual: {fileID: 4878787358618412594, guid: f36cfe3d060a4344dbacd80b936adefb, type: 3}
+  generatorVisual: {fileID: 3770904177059993392, guid: f36cfe3d060a4344dbacd80b936adefb, type: 3}
   goodWeatherVisual: []
   badWeatherVisual: []
-  generateTime: 4
-  generateAmount: 10
+  generateTime: 12
+  generateAmount: 20
   amountMultiplier: 1
-  needCoinCount: 2
+  needCoinCount: 20
   isNeedWater: 0
