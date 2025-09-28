@@ -13,6 +13,7 @@ namespace InputSystem
         public event Action OnSelectReleased;
         public event Action<float> OnMoveScrolled;
         public event Action OnCancelPressed;
+        public event Action OnPausePressed;
 
         public float ScrollValue { get; private set; }
         public Vector2 MoveDir { get; private set; }
@@ -70,6 +71,12 @@ namespace InputSystem
         {
             if (context.performed)
                 OnCancelPressed?.Invoke();
+        }
+
+        public void OnPause(InputAction.CallbackContext context)
+        {
+            if(context.performed)
+                OnPausePressed?.Invoke();
         }
 
         public void ClearAction()

@@ -18,10 +18,16 @@ namespace LKW.Generators
         
         public List<Generator> generators = new List<Generator>();
 
-        private void OnEnable()
+        private void Awake()
         {
             environmentChannel.AddListener<EnvironmentChangeEvent>(HandleEnvironmentChangeEvent);
-            environmentChannel.AddListener<BuildCompleteEvent>(HandleBuildCompleteEvent);
+            landChannel.AddListener<BuildCompleteEvent>(HandleBuildCompleteEvent);
+        }
+
+        private void OnDestroy()
+        {
+            environmentChannel.RemoveListener<EnvironmentChangeEvent>(HandleEnvironmentChangeEvent);
+            landChannel.RemoveListener<BuildCompleteEvent>(HandleBuildCompleteEvent);
         }
 
         private void Update()
@@ -50,7 +56,8 @@ namespace LKW.Generators
         
         private void HandleBuildCompleteEvent(BuildCompleteEvent evt)
         {
-            //AddGenerator(evt.);
+            Debug.Log("설치후 추가");
+            AddGenerator(evt.generator);
         }
 
         private void HandleEnvironmentChangeEvent(EnvironmentChangeEvent evt)

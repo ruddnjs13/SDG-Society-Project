@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Windy
   m_EditorClassIdentifier: 
   weatherType: 8
-  weatherIcon: {fileID: 0}
+  weatherIcon: {fileID: 3900830918975177202, guid: e638db4d391f97848903ffcfacc688f6, type: 3}
