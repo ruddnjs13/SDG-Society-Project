@@ -11,7 +11,9 @@ namespace InputSystem
         
         public event Action OnSelectPressed;
         public event Action OnSelectReleased;
+        public event Action<float> OnMoveScrolled;
 
+        public float ScrollValue { get; private set; }
         public Vector2 MoveDir { get; private set; }
         private Vector2 _screenPointPos; 
         
@@ -52,6 +54,15 @@ namespace InputSystem
         public void OnMousePos(InputAction.CallbackContext context)
         {
             _screenPointPos = context.ReadValue<Vector2>();
+        }
+
+        public void OnScroll(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                float value = context.ReadValue<float>();
+                OnMoveScrolled?.Invoke(value);
+            }
         }
     }
 }
