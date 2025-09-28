@@ -15,6 +15,7 @@ namespace LKW.Generators
 {
     public class Generator : MonoBehaviour
     {
+        public UnityEvent OnBuildEvent;
         public UnityEvent generatorEvent;
         
         [SerializeField] private PoolManagerSO poolManager;
@@ -62,6 +63,8 @@ namespace LKW.Generators
             {
                 TypeBit = (int)generatorData.timeZoneType
             };
+            
+            OnBuildEvent?.Invoke();
         }
 
         public void GenerateEnergy()

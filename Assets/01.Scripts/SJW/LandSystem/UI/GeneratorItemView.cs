@@ -16,6 +16,7 @@ namespace LandSystem.UI
         [SerializeField] private TextMeshProUGUI generatorNameText;
         [SerializeField] private TextMeshProUGUI generatorValueText;
         [SerializeField] private TextMeshProUGUI generatorPenaltyText;
+        [SerializeField] private TextMeshProUGUI buyButtonText;
         [SerializeField] private Button buyButton;
 
         private GeneratorDataSO currentData;
@@ -24,8 +25,9 @@ namespace LandSystem.UI
         {
             iconImage.sprite = data.generatorVisual;
             generatorNameText.SetText(data.generatorName);
-            generatorValueText.SetText($"+{(data.generateAmount * data.amountMultiplier) / data.generateTime}E/s");
+            generatorValueText.SetText($"+{(data.generateAmount * data.amountMultiplier) / data.generateTime} E/s");
             generatorPenaltyText.SetText(""); //임시
+            buyButtonText.SetText($"구매: {data.needCoinCount} Coin");
             
             buyButton.onClick.AddListener(HandleRequestBuy);
             currentData = data;
