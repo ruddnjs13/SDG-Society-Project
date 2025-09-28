@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   landChannel: {fileID: 11400000, guid: 308ec28a89e7dc348989415f7e83c979, type: 2}
+  pointChannel: {fileID: 11400000, guid: 682fa322aca06eb4bbb13597a04620b1, type: 2}
   canBuildingMap: {fileID: 0}
   generatorPrefab: {fileID: 8941995584704310243, guid: f8f0341800f30de49b1391a3b6de3d94, type: 3}
   generatorGroupParent: {fileID: 0}

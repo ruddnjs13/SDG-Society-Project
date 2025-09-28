@@ -4,6 +4,7 @@
     {
         SOLAR = 0,
         WATER,
-        WIND
+        WIND,
+        FOSSI_FUEL
     }
 }

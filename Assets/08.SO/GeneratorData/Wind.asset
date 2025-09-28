@@ -13,10 +13,14 @@ MonoBehaviour:
   m_Name: Wind
   m_EditorClassIdentifier: 
   generatorName: "\uD48D\uB825 \uBC1C\uC804\uAE30"
-  generatorType: 0
-  weatherType: 1
+  generatorKorName: 
+  generatorType: 2
+  goodWeatherType: 8
+  badWeatherType: 0
   timeZoneType: 0
   generatorVisual: {fileID: 4878787358618412594, guid: f36cfe3d060a4344dbacd80b936adefb, type: 3}
   generateTime: 4
   generateAmount: 10
   amountMultiplier: 1
+  needCoinCount: 2
+  isNeedWater: 0

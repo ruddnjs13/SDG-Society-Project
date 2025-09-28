@@ -11,7 +11,6 @@ namespace LandSystem
 {
     public class GeneratorBuilder : MonoBehaviour
     {
-        [SerializeField] private GameEventChannelSO pointChannel; //임시
         [SerializeField] private GameEventChannelSO landChannel; 
         [SerializeField] private InputControllerSO inputData;
         
@@ -30,13 +29,13 @@ namespace LandSystem
         
         private void Awake()
         {
-            pointChannel.AddListener<RequestGeneratorBuyEvent>(HandleGeneratorBuildStart);
+            landChannel.AddListener<BuyCompleteGeneratorEvent>(HandleGeneratorBuildStart);
             SetEnable(false);
         }
 
         private void OnDestroy()
         {
-            pointChannel.RemoveListener<RequestGeneratorBuyEvent>(HandleGeneratorBuildStart);
+            landChannel.RemoveListener<BuyCompleteGeneratorEvent>(HandleGeneratorBuildStart);
         }
 
         private void Update()
@@ -52,23 +51,40 @@ namespace LandSystem
             possibleChecker.color = _prevCanBuild ? possibleColor : worryColor;
         }
 
-        private void HandleGeneratorBuildStart(RequestGeneratorBuyEvent evt)
+        private void HandleGeneratorBuildStart(BuyCompleteGeneratorEvent evt)
         {
             inputData.OnSelectPressed += HandleBuildGenerator;
+            inputData.OnCancelPressed += HandleCancelPressed;
 
             SetEnable(true);
             
             _currentData = evt.generatorData;
             buildingIcon.sprite = evt.generatorData.generatorVisual;
+            buildingIcon.transform.position = inputData.GetWorldPointPos();
+        }
+
+        private void HandleCancelPressed()
+        {
+            Cancel();
+            _currentData = null;
         }
 
         private void HandleBuildGenerator()
         {
-            SetEnable(false);
-            inputData.OnSelectPressed -= HandleBuildGenerator;
+            Cancel();
 
+            if (_currentData == null) return;
+            
             var evt = LandEvents.BuildRequestEvent.Initializer(_currentData, inputData.GetWorldPointPos());
             landChannel.RaiseEvent(evt);
+        }
+        
+        private void Cancel()
+        {
+            inputData.OnSelectPressed -= HandleBuildGenerator;
+            inputData.OnCancelPressed -= HandleCancelPressed;
+            
+            SetEnable(false);
         }
         
         private void SetEnable(bool isEnable)
