@@ -1,6 +1,7 @@
 ﻿using System;
 using Core.GameEvent;
 using LKW.Generaters.LKW.Events;
+using LKW.UI;
 using UnityEngine;
 
 namespace LKW.Penalties
@@ -8,10 +9,10 @@ namespace LKW.Penalties
     public class PollutionManager : MonoBehaviour
     {
         [SerializeField] private GameEventChannelSO pollutionChannel;
-        
-        [SerializeField] private int maxPollution;
+        [SerializeField] private ProgressBar progressBar;
+        [SerializeField] private float maxPollution;
 
-        public int currentPollution = 0;
+        public float currentPollution = 0;
 
         private void OnEnable()
         {
@@ -26,9 +27,10 @@ namespace LKW.Penalties
         {
             currentPollution += evt.pollutionAmount;
 
+            Debug.Log(currentPollution);
+            progressBar.SetBar(Mathf.Clamp01(currentPollution/ maxPollution));
             if (currentPollution >= maxPollution)
             {
-                
             }
         }
     }

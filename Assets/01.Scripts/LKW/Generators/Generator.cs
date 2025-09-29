@@ -16,7 +16,7 @@ namespace LKW.Generators
     public class Generator : MonoBehaviour
     {
         public UnityEvent OnBuildEvent;
-        public UnityEvent generatorEvent;
+        [FormerlySerializedAs("generatorEvent")] public UnityEvent penaltyEvent;
         
         [SerializeField] private PoolManagerSO poolManager;
         [SerializeField] private GameEventChannelSO energyChannel;
@@ -37,6 +37,7 @@ namespace LKW.Generators
         public GeneratorDataSO MyData { get; private set; }
 
         public bool IsRunning { get; private set; } = false;
+        public bool IsPenalty { get; private set; } = false;
 
         private void Awake()
         {
@@ -47,6 +48,7 @@ namespace LKW.Generators
         {
             MyData = generatorData;
             
+            IsPenalty = generatorData.isPenalty;
             GenerateTime = generatorData.generateTime;
             _generateAmount = generatorData.generateAmount;
             AmountMultiplier = generatorData.amountMultiplier;
@@ -73,7 +75,8 @@ namespace LKW.Generators
 
         public void GenerateEnergy()
         {
-            generatorEvent?.Invoke();
+            if(IsPenalty)
+                penaltyEvent?.Invoke();
             
             int getAmount = Mathf.RoundToInt(_generateAmount * AmountMultiplier); 
             

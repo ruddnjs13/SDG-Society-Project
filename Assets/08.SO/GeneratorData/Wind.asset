@@ -18,7 +18,8 @@ MonoBehaviour:
   badWeatherType: 0
   timeZoneType: -1
   generatorVisual: {fileID: 4878787358618412594, guid: f36cfe3d060a4344dbacd80b936adefb, type: 3}
-  goodWeatherVisual: []
+  goodWeatherVisual:
+  - {fileID: 3900830918975177202, guid: e638db4d391f97848903ffcfacc688f6, type: 3}
   badWeatherVisual: []
   generateTime: 6
   generateAmount: 5
