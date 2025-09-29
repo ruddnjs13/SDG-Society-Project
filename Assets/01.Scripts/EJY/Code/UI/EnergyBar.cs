@@ -12,7 +12,7 @@ namespace Code.UI
         [SerializeField] private RectTransform barRect;
         [SerializeField] private GameEventChannelSO energyChannel;
 
-        private UnityEvent<bool> onCompleteEvent;
+        public UnityEvent<bool> onCompleteEvent;
         
         private float _currentEnergy = 0;
         
