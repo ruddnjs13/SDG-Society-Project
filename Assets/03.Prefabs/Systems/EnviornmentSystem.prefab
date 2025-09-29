@@ -128,6 +128,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6323376246643228724}
+  - {fileID: 6999914291997712555}
+  - {fileID: 551740050449611308}
+  - {fileID: 6591157944052654246}
   m_Father: {fileID: 9003256408977909661}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5485391704071363350
@@ -142,6 +145,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 247125f0720506142a26d57b6e0c45ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rainyEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3422144211799168307}
+        m_TargetAssemblyTypeName: LKW.Feedbacks.SoundFeedback, Assembly-CSharp
+        m_MethodName: CreateFeedback
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  windyEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 9127433003366667853}
+        m_TargetAssemblyTypeName: LKW.Feedbacks.SoundFeedback, Assembly-CSharp
+        m_MethodName: CreateFeedback
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  bgmEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4842122620545569474}
+        m_TargetAssemblyTypeName: LKW.Feedbacks.SoundFeedback, Assembly-CSharp
+        m_MethodName: CreateFeedback
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   weatherData:
   - {fileID: 11400000, guid: 23127ba3aacc6924984bfa76a670beab, type: 2}
   - {fileID: 11400000, guid: d21453d779ccbd3418a21571cd6cea70, type: 2}
@@ -443,6 +491,54 @@ MonoBehaviour:
   bloomValue: 0
   vignetteValue: 0.4
   rainyEffect: {fileID: 2912160098912956571}
+--- !u!1 &3812143419409890527
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6999914291997712555}
+  - component: {fileID: 3422144211799168307}
+  m_Layer: 0
+  m_Name: RainyFeedback
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6999914291997712555
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3812143419409890527}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4318881407015633334}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3422144211799168307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3812143419409890527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe38701f4485462a9f87a22167b53c9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundID:
+    ID: 268435461
+    _sourceAsset: {fileID: 11400000, guid: 01c723a5643e24641bad97ff2d857a32, type: 2}
+    <DebugObject>k__BackingField: {fileID: 3812143419409890527}
 --- !u!1 &4081324186458544498
 GameObject:
   m_ObjectHideFlags: 0
@@ -5560,6 +5656,102 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &5086084102573373322
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 551740050449611308}
+  - component: {fileID: 9127433003366667853}
+  m_Layer: 0
+  m_Name: WindyFeedback
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &551740050449611308
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5086084102573373322}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4318881407015633334}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9127433003366667853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5086084102573373322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe38701f4485462a9f87a22167b53c9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundID:
+    ID: 268435460
+    _sourceAsset: {fileID: 11400000, guid: 01c723a5643e24641bad97ff2d857a32, type: 2}
+    <DebugObject>k__BackingField: {fileID: 5086084102573373322}
+--- !u!1 &5932099863713639385
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6591157944052654246}
+  - component: {fileID: 4842122620545569474}
+  m_Layer: 0
+  m_Name: BGMFeedback
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6591157944052654246
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5932099863713639385}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4318881407015633334}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4842122620545569474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5932099863713639385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe38701f4485462a9f87a22167b53c9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundID:
+    ID: 268435459
+    _sourceAsset: {fileID: 11400000, guid: 01c723a5643e24641bad97ff2d857a32, type: 2}
+    <DebugObject>k__BackingField: {fileID: 5932099863713639385}
 --- !u!1 &6537664721234362254
 GameObject:
   m_ObjectHideFlags: 0
