@@ -22,7 +22,7 @@ namespace LKW.Generators
         
         private GeneratorRenderer _generatorRenderer;
         
-        private  float _generateAmount;
+        [FormerlySerializedAs("_generateAmount")] public  float generateAmount;
         public  float AmountMultiplier { get; private set; }
         
         public float GenerateTime {get; private set;}
@@ -48,7 +48,7 @@ namespace LKW.Generators
             
             IsPenalty = generatorData.isPenalty;
             GenerateTime = generatorData.generateTime;
-            _generateAmount = generatorData.generateAmount;
+            generateAmount = generatorData.generateAmount;
             AmountMultiplier = generatorData.amountMultiplier;
             _generatorRenderer.InitVisual(generatorData.generatorVisual);
             _generatorRenderer.SetVisualByWeather(IsRunning, AmountMultiplier);
@@ -76,7 +76,7 @@ namespace LKW.Generators
             if(IsPenalty)
                 penaltyEvent?.Invoke();
             
-            int getAmount = Mathf.CeilToInt(_generateAmount * AmountMultiplier); 
+            int getAmount = Mathf.CeilToInt(generateAmount * AmountMultiplier); 
             
             Debug.Log(getAmount);
             

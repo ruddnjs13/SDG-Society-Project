@@ -68,5 +68,17 @@ namespace LKW.Generators
             }
         }
 
+        public int GetTotalGenerateAmount()
+        {
+            int total = 0;
+
+            foreach (var generator in generators)
+            {
+                total += Mathf.CeilToInt(generator.generateAmount / generator.GenerateTime);
+            }
+            
+            return total;
+        }
+
     }
 }
