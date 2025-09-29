@@ -28,5 +28,6 @@ namespace LKW.Generators
         public float amountMultiplier;
         public int needCoinCount;
         public bool isNeedWater;
+        public bool isPenalty;
     }
 }
