@@ -1,4 +1,6 @@
-﻿using DG.Tweening;
+﻿using Code.Events;
+using Core.GameEvent;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +11,8 @@ namespace Code.UI
         [SerializeField] private float duration = 0.2f;
         [SerializeField] private float sizeMultiplier = 3;
         [SerializeField] private Image gradeImage;
+        [SerializeField] private GameEventChannelSO sceneChannel;
+        [SerializeField] private Sprite aImage, bImage, cImage;
         [SerializeField] private Color startColor = Color.black;
 
         private RectTransform Rect => transform as RectTransform;
@@ -21,16 +25,25 @@ namespace Code.UI
             _originSize = transform.localScale;
         }
 
-        private void Update()
+        public void ScaleEffect(float percentage)
         {
-            if (UnityEngine.InputSystem.Keyboard.current.digit1Key.wasPressedThisFrame)
+            if (Mathf.Approximately(0f, percentage))
             {
-                ScaleEffect();
+                sceneChannel.RaiseEvent(SceneEvents.FadeEvent.Init(true, "PerfectClearScene"));
             }
-        }
-
-        public void ScaleEffect()
-        {
+            else if (percentage is <= 10 and > 0)
+            {
+                gradeImage.sprite = aImage;
+            }
+            else if (percentage is <= 40 and > 10)
+            {
+                gradeImage.sprite = bImage;
+            }
+            else if (percentage is <= 70 and > 40)
+            {
+                gradeImage.sprite = cImage;
+            }
+            
             if (_seq != null && _seq.IsActive())
             {
                 _seq.Kill();

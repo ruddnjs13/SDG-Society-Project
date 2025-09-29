@@ -11,7 +11,7 @@ namespace Code.UI
         {
             if (isClear)
             {
-                gradeImage.ScaleEffect();
+                //gradeImage.ScaleEffect();
                 SetCanvasGroup(clearGroup, true);
                 SetCanvasGroup(failGroup, false);
             }
