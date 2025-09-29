@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace LKW.Penalties
 {
-    public class PollutionManager : MonoBehaviour
+    public class PollutionManager : MonoSingleton<PollutionManager>
     {
         [SerializeField] private GameEventChannelSO pollutionChannel;
         [SerializeField] private GameEventChannelSO sceneChannel;
@@ -15,6 +15,7 @@ namespace LKW.Penalties
         [SerializeField] private float maxPollution;
 
         public float currentPollution = 0;
+        public float MaxPollution => maxPollution;
 
         private void OnEnable()
         {

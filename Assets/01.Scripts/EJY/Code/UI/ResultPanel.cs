@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using LKW.Penalties;
+using UnityEngine;
 
 namespace Code.UI
 {
@@ -11,7 +12,8 @@ namespace Code.UI
         {
             if (isClear)
             {
-                //gradeImage.ScaleEffect();
+                gradeImage.ScaleEffect((PollutionManager.Instance.currentPollution /
+                                        PollutionManager.Instance.MaxPollution) * 100f);
                 SetCanvasGroup(clearGroup, true);
                 SetCanvasGroup(failGroup, false);
             }
