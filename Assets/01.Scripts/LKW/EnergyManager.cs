@@ -7,7 +7,7 @@ namespace LKW
 {
     public class EnergyManager : MonoSingleton<EnergyManager>
     {
-        public UnityEvent<int, int> OnEnergyChangeValue;
+        public UnityEvent<int, int, bool> OnEnergyChangeValue;
         [SerializeField] private GameEventChannelSO energyChannel;
 
         private int _energy = 0;
@@ -24,7 +24,7 @@ namespace LKW
         private void Awake()
         {
             energyChannel.AddListener<GetEnergyEvent>(HandleGetEnergyEvent);
-            OnEnergyChangeValue?.Invoke(Energy, Energy);
+            OnEnergyChangeValue?.Invoke(Energy, Energy, true);
         }
 
         private void HandleGetEnergyEvent(GetEnergyEvent evt)
@@ -32,7 +32,7 @@ namespace LKW
             int tempValue = Energy;
             
             Energy += evt.getAmount;
-            OnEnergyChangeValue?.Invoke(Energy, tempValue);
+            OnEnergyChangeValue?.Invoke(Energy, tempValue, false);
         }
     }
 }
