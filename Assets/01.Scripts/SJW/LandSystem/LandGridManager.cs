@@ -123,6 +123,8 @@ namespace LandSystem
                 if(!canBuildingMaps[idx].HasTile(pos)) continue;
                 
                 var posXY = GetVectorRound((Vector3)pos);
+                if(_grid.Contains(posXY) && _powerStationGrid.ContainsKey(posXY)) continue;
+                
                 _grid.Add(posXY);
                 _powerStationGrid.Add(posXY, null);
             }

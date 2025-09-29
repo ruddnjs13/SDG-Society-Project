@@ -34,7 +34,7 @@ namespace LandSystem.UI
             panel.anchoredPosition = new Vector2(-panel.sizeDelta.x, 0);
             warningText.gameObject.SetActive(false);
             
-            landChannel.AddListener<RequestGeneratorBuyEvent>(HandleRequestBuyGenerator);
+            pointChannel.AddListener<RequestGeneratorBuyEvent>(HandleRequestBuyGenerator);
             pointChannel.AddListener<BuyFailEvent>(HandleBuyFailWarningText);
         }
 

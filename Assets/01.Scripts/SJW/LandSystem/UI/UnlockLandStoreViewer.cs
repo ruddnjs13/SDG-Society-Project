@@ -39,7 +39,7 @@ namespace LandSystem.UI
             {
                 return;
             }
-
+            
             var unlockEvt = LandEvents.UnlockLandEvent.Initializer(evt.index);
             landChannel.RaiseEvent(unlockEvt);
 

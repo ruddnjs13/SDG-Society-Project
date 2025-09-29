@@ -25,12 +25,16 @@ namespace LandSystem.UI
         {
             _myIndex = idx;
             _needCoinCount = coinCount;
+            
+            indexText.SetText($"그룹{_myIndex}");
+            coinText.SetText(_needCoinCount.ToString());
+            
             buyButton.onClick.AddListener(HandleBuyUnlockLand);
         }
 
         private void HandleBuyUnlockLand()
         {
-            var evt = LandEvents.BuyUnlockLandEvent.Initializer(_myIndex, _needCoinCount);
+            var evt = LandEvents.BuyUnlockLandEvent.Initializer(_myIndex, -_needCoinCount);
             landChannel.RaiseEvent(evt);
         }
         
