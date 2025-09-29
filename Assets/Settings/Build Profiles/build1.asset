@@ -23,7 +23,7 @@ MonoBehaviour:
   - m_enabled: 1
     m_path: Assets/00.Scenes/TitleScene.unity
   - m_enabled: 1
-    m_path: Assets/00.Scenes/Ingame.unity
+    m_path: Assets/00.Scenes/Game.unity
   m_ScriptingDefines: []
   m_PlayerSettingsYaml:
     m_Settings:

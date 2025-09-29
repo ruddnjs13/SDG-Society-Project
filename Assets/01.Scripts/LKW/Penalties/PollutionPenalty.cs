@@ -10,7 +10,7 @@ namespace LKW.Penalties
 
         public void Penalty()
         {
-            var evt = PollutionEvents.GetPollutionEvent.Initializer(10);
+            var evt = PollutionEvents.GetPollutionEvent.Initializer(1);
             
             pollutionChannel.RaiseEvent(evt);
         }
