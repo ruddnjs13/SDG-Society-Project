@@ -1,5 +1,4 @@
-﻿using _01.Scripts.SJW.Events;
-using InputSystem;
+﻿using InputSystem;
 using Core.GameEvent;
 using DG.Tweening;
 using Events;

@@ -4,7 +4,7 @@ using LKW.Generaters;
 using LKW.Generators;
 using UnityEngine;
 
-namespace _01.Scripts.SJW.Events
+namespace Events
 {
     public static class LandEvents
     {

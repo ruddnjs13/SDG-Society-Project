@@ -1,13 +1,14 @@
-﻿using System;
-using _01.Scripts.SJW.Events;
-using Core.GameEvent;
+﻿using Core.GameEvent;
 using Events;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace CoinSystem
 {
     public class CoinManager : MonoBehaviour
     {
+        public UnityEvent<int, int> OnCoinChangeValue;
+        
         [SerializeField] private GameEventChannelSO pointChannel;
         [SerializeField] private GameEventChannelSO landChannel;
 
@@ -17,6 +18,8 @@ namespace CoinSystem
         {
             pointChannel.AddListener<RequestGeneratorBuyEvent>(HandleGeneratorBuy);
             pointChannel.AddListener<AddCoinEvent>(HandleAddCoin);
+            
+            OnCoinChangeValue?.Invoke(_currentCoin,_currentCoin);
         }
         private void OnDestroy()
         {
@@ -42,7 +45,10 @@ namespace CoinSystem
         {
             if (CheckCurrentCoin(value))
             {
+                int tempValue = _currentCoin;
+                
                 _currentCoin += value;
+                OnCoinChangeValue?.Invoke(_currentCoin, tempValue);
             }
         }
 

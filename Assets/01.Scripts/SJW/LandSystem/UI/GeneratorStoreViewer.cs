@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using _01.Scripts.SJW.Events;
+﻿using System.Collections.Generic;
 using Core.GameEvent;
 using DG.Tweening;
 using Events;
