@@ -6,11 +6,15 @@ using Events;
 using LKW.Generators;
 using RuddnjsLib.Dependencies;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace LandSystem.UI
 {
     public class GeneratorStoreViewer : MonoBehaviour
     {
+        public UnityEvent buyFailEvent;
+        public UnityEvent buySuccessEvent;
+        
         [SerializeField] private GameEventChannelSO landChannel;
         [SerializeField] private GameEventChannelSO pointChannel;
         
@@ -42,6 +46,7 @@ namespace LandSystem.UI
         {
             if (coinM.CheckCurrentCoin(-evt.generatorData.needCoinCount))
             {
+                buySuccessEvent?.Invoke();
                 var completeEvt = LandEvents.BuyCompleteGeneratorEvent.Initializer(evt.generatorData);
                 landChannel.RaiseEvent(completeEvt);
                 
@@ -57,6 +62,7 @@ namespace LandSystem.UI
         
         private void HandleBuyFailWarningText(BuyFailEvent evt)
         {
+            buyFailEvent?.Invoke();
             DOTween.Kill(warningText);
             warningText.gameObject.SetActive(true);
             warningText.transform.rotation = Quaternion.identity;
