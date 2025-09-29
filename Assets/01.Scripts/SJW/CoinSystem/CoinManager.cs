@@ -7,7 +7,7 @@ namespace CoinSystem
 {
     public class CoinManager : MonoBehaviour
     {
-        public UnityEvent<int, int> OnCoinChangeValue;
+        public UnityEvent<int, int, bool> OnCoinChangeValue;
         
         [SerializeField] private GameEventChannelSO pointChannel;
         [SerializeField] private GameEventChannelSO landChannel;
@@ -19,7 +19,7 @@ namespace CoinSystem
             pointChannel.AddListener<RequestGeneratorBuyEvent>(HandleGeneratorBuy);
             pointChannel.AddListener<AddCoinEvent>(HandleAddCoin);
             
-            OnCoinChangeValue?.Invoke(_currentCoin,_currentCoin);
+            OnCoinChangeValue?.Invoke(_currentCoin,_currentCoin, true);
         }
         private void OnDestroy()
         {
@@ -48,7 +48,7 @@ namespace CoinSystem
                 int tempValue = _currentCoin;
                 
                 _currentCoin += value;
-                OnCoinChangeValue?.Invoke(_currentCoin, tempValue);
+                OnCoinChangeValue?.Invoke(_currentCoin, tempValue, false);
             }
         }
 
