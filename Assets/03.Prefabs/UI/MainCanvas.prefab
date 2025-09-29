@@ -1259,9 +1259,9 @@ MonoBehaviour:
   sizeMultiplier: 5
   gradeImage: {fileID: 6072555079321021702}
   sceneChannel: {fileID: 11400000, guid: c5acde7f15b0f854b856884946b20500, type: 2}
+  aImage: {fileID: 0}
   bImage: {fileID: -5240384769198421359, guid: 6c463a80be299714e807d5112d8af37f, type: 3}
   cImage: {fileID: 8286114400431311724, guid: 6c463a80be299714e807d5112d8af37f, type: 3}
-  dImage: {fileID: 1672873483710363315, guid: 6c463a80be299714e807d5112d8af37f, type: 3}
   startColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!1 &2941816914363626624
 GameObject:
@@ -2204,6 +2204,7 @@ GameObject:
   - component: {fileID: 6517687798566616708}
   - component: {fileID: 6650982190481743291}
   - component: {fileID: 1620137596910022426}
+  - component: {fileID: 8781895250077503270}
   m_Layer: 5
   m_Name: TitleButton
   m_TagString: Untagged
@@ -2313,9 +2314,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Code.UI.PauseMenu, Assembly-CSharp
-        m_MethodName: OnInGameExit
+      - m_Target: {fileID: 8781895250077503270}
+        m_TargetAssemblyTypeName: Code.UI.FadeSystem.SceneChangeEvt, Assembly-CSharp
+        m_MethodName: SceneChange
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2325,6 +2326,19 @@ MonoBehaviour:
           m_StringArgument: TitleScene
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &8781895250077503270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7417040401736156634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22f7d4d55f734455a5dde11ac75d8843, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneChannel: {fileID: 11400000, guid: c5acde7f15b0f854b856884946b20500, type: 2}
 --- !u!1 &7639869250975179799
 GameObject:
   m_ObjectHideFlags: 0

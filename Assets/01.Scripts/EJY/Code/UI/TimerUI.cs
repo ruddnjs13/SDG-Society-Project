@@ -15,16 +15,20 @@ namespace Code.UI
 
         private void Awake()
         {
-            throw new NotImplementedException();
+            _currentTime = limitTime;
         }
 
         private void Update()
         {
-            _currentTime += Time.deltaTime;
+            if (_currentTime <= 0) return;
+            
+            _currentTime -= Time.deltaTime;
             float ratio = _currentTime / limitTime;
-
-            if (_currentTime >= limitTime)
+            barImage.transform.localScale = new Vector3(ratio, 1, 1);
+                
+            if (_currentTime <= 0)
             {
+                _currentTime = 0;
                 OnFailEvent?.Invoke(false);
             }
         }
