@@ -1,4 +1,5 @@
 ﻿using System;
+using Code.Events;
 using Core.GameEvent;
 using LKW.Generaters.LKW.Events;
 using LKW.UI;
@@ -9,6 +10,7 @@ namespace LKW.Penalties
     public class PollutionManager : MonoBehaviour
     {
         [SerializeField] private GameEventChannelSO pollutionChannel;
+        [SerializeField] private GameEventChannelSO sceneChannel;
         [SerializeField] private ProgressBar progressBar;
         [SerializeField] private float maxPollution;
 
@@ -31,6 +33,9 @@ namespace LKW.Penalties
             progressBar.SetBar(Mathf.Clamp01(currentPollution/ maxPollution));
             if (currentPollution >= maxPollution)
             {
+                var sendEvt = SceneEvents.ChangeSceneEvent.Init("GameOver");
+                
+                sceneChannel.RaiseEvent(sendEvt);
             }
         }
     }
