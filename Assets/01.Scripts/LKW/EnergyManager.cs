@@ -17,7 +17,7 @@ namespace LKW
             get  => _energy;
             set
             {
-                _energy += value;
+                _energy = value;
             }
         }
 

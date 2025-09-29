@@ -1,14 +1,20 @@
 ﻿using System.Collections.Generic;
+using CoinSystem;
 using Core.GameEvent;
 using DG.Tweening;
 using Events;
 using LKW.Generators;
+using RuddnjsLib.Dependencies;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace LandSystem.UI
 {
     public class GeneratorStoreViewer : MonoBehaviour
     {
+        public UnityEvent buyFailEvent;
+        public UnityEvent buySuccessEvent;
+        
         [SerializeField] private GameEventChannelSO landChannel;
         [SerializeField] private GameEventChannelSO pointChannel;
         
@@ -17,7 +23,8 @@ namespace LandSystem.UI
         [SerializeField] private Transform contentsParent;
         [SerializeField] private RectTransform panel;
         [SerializeField] private Transform warningText;
-        
+
+        [Inject] private CoinManager coinM;
         private bool isOpen;
 
         private void Awake()
@@ -31,23 +38,31 @@ namespace LandSystem.UI
             panel.anchoredPosition = new Vector2(-panel.sizeDelta.x, 0);
             warningText.gameObject.SetActive(false);
             
-            landChannel.AddListener<BuyCompleteGeneratorEvent>(HandlePopupStore);
+            pointChannel.AddListener<RequestGeneratorBuyEvent>(HandleRequestBuyGenerator);
             pointChannel.AddListener<BuyFailEvent>(HandleBuyFailWarningText);
+        }
+
+        private void HandleRequestBuyGenerator(RequestGeneratorBuyEvent evt)
+        {
+            if (coinM.CheckCurrentCoin(-evt.generatorData.needCoinCount))
+            {
+                buySuccessEvent?.Invoke();
+                var completeEvt = LandEvents.BuyCompleteGeneratorEvent.Initializer(evt.generatorData);
+                landChannel.RaiseEvent(completeEvt);
+                
+                HandlePopupGeneratorStore();
+            }
         }
 
         private void OnDestroy()
         {
-            landChannel.RemoveListener<BuyCompleteGeneratorEvent>(HandlePopupStore);
+            landChannel.RemoveListener<RequestGeneratorBuyEvent>(HandleRequestBuyGenerator);
             pointChannel.RemoveListener<BuyFailEvent>(HandleBuyFailWarningText);
-        }
-
-        private void HandlePopupStore(BuyCompleteGeneratorEvent evt)
-        {
-            HandlePopupGeneratorStore();
         }
         
         private void HandleBuyFailWarningText(BuyFailEvent evt)
         {
+            buyFailEvent?.Invoke();
             DOTween.Kill(warningText);
             warningText.gameObject.SetActive(true);
             warningText.transform.rotation = Quaternion.identity;

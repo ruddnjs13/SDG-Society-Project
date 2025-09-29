@@ -1,4 +1,5 @@
-﻿using Core.GameEvent;
+﻿using System;
+using Core.GameEvent;
 using Events;
 using LKW.Generators;
 using TMPro;
@@ -25,7 +26,7 @@ namespace LandSystem.UI
         {
             iconImage.sprite = data.generatorVisual;
             generatorNameText.SetText(data.generatorName);
-            generatorValueText.SetText($"+{(data.generateAmount * data.amountMultiplier) / data.generateTime} E/s");
+            generatorValueText.SetText($"+{Math.Round((data.generateAmount * data.amountMultiplier) / data.generateTime, 2)} E/s");
             generatorPenaltyText.SetText(""); //임시
             buyButtonText.SetText($"구매: {data.needCoinCount} Coin");
             

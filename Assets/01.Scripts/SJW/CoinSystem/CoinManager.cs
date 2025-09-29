@@ -1,11 +1,13 @@
 ﻿using Core.GameEvent;
 using Events;
+using RuddnjsLib.Dependencies;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace CoinSystem
 {
-    public class CoinManager : MonoBehaviour
+    [Provide]
+    public class CoinManager : MonoBehaviour, IDependencyProvider
     {
         public UnityEvent<int, int, bool> OnCoinChangeValue;
         
@@ -16,32 +18,21 @@ namespace CoinSystem
         
         private void Awake()
         {
-            pointChannel.AddListener<RequestGeneratorBuyEvent>(HandleGeneratorBuy);
             pointChannel.AddListener<AddCoinEvent>(HandleAddCoin);
             
             OnCoinChangeValue?.Invoke(_currentCoin,_currentCoin, true);
         }
         private void OnDestroy()
         {
-            pointChannel.RemoveListener<RequestGeneratorBuyEvent>(HandleGeneratorBuy);
             pointChannel.RemoveListener<AddCoinEvent>(HandleAddCoin);
-        }
-
-        private void HandleGeneratorBuy(RequestGeneratorBuyEvent evt)
-        {
-            if (CheckCurrentCoin(-evt.generatorData.needCoinCount))
-            {
-                var completeEvt = LandEvents.BuyCompleteGeneratorEvent.Initializer(evt.generatorData);
-                landChannel.RaiseEvent(completeEvt);
-            }
         }
         
         private void HandleAddCoin(AddCoinEvent evt)
         {
-            SetCurrentCoin(evt.coinValue);
+            AddCoin(evt.coinValue);
         }
 
-        public void SetCurrentCoin(int value)
+        public void AddCoin(int value)
         {
             if (CheckCurrentCoin(value))
             {
