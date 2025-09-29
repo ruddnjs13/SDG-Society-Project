@@ -12,7 +12,7 @@ namespace Code.UI
         [SerializeField] private float sizeMultiplier = 3;
         [SerializeField] private Image gradeImage;
         [SerializeField] private GameEventChannelSO sceneChannel;
-        [SerializeField] private Sprite bImage, cImage, dImage;
+        [SerializeField] private Sprite aImage, bImage, cImage;
         [SerializeField] private Color startColor = Color.black;
 
         private RectTransform Rect => transform as RectTransform;
@@ -33,19 +33,15 @@ namespace Code.UI
             }
             else if (percentage is <= 10 and > 0)
             {
-                gradeImage.sprite = bImage;
+                gradeImage.sprite = aImage;
             }
             else if (percentage is <= 40 and > 10)
             {
-                gradeImage.sprite = cImage;
+                gradeImage.sprite = bImage;
             }
             else if (percentage is <= 70 and > 40)
             {
-                gradeImage.sprite = dImage;
-            }
-            else
-            {
-                sceneChannel.RaiseEvent(SceneEvents.FadeEvent.Init(true, "FailScene"));
+                gradeImage.sprite = cImage;
             }
             
             if (_seq != null && _seq.IsActive())
