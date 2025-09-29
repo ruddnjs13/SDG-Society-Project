@@ -29,10 +29,10 @@ namespace CoinSystem
         
         private void HandleAddCoin(AddCoinEvent evt)
         {
-            SetCurrentCoin(evt.coinValue);
+            AddCoin(evt.coinValue);
         }
 
-        public void SetCurrentCoin(int value)
+        public void AddCoin(int value)
         {
             if (CheckCurrentCoin(value))
             {

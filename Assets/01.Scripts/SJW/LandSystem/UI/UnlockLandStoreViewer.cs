@@ -43,7 +43,7 @@ namespace LandSystem.UI
             var unlockEvt = LandEvents.UnlockLandEvent.Initializer(evt.index);
             landChannel.RaiseEvent(unlockEvt);
 
-            coinM.SetCurrentCoin(evt.needCoin);
+            coinM.AddCoin(evt.needCoin);
             var viewer = unlockViewItems.ToList().FirstOrDefault(item => item.Index == evt.index);
             viewer.SetLockUI(false);
         }
