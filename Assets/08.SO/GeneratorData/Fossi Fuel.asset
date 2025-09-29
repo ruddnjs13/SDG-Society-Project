@@ -25,3 +25,4 @@ MonoBehaviour:
   amountMultiplier: 1
   needCoinCount: 20
   isNeedWater: 0
+  isPenalty: 1
