@@ -42,7 +42,6 @@ namespace InputSystem
             if (context.performed)
             {
                 OnSelectPressed?.Invoke();
-                Debug.Log("마우스 클릭");
             }
             else if (context.canceled)
                 OnSelectReleased?.Invoke();

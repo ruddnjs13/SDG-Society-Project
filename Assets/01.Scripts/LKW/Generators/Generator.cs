@@ -4,12 +4,10 @@ using LKW.Generaters.LKW.Events;
 using Code.Weathers;
 using Code.Weathers.Utility;
 using Core.GameEvent;
-using LandSystem;
 using RuddnjsPool;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
-using VHierarchy.Libs;
 
 namespace LKW.Generators
 {
@@ -78,7 +76,9 @@ namespace LKW.Generators
             if(IsPenalty)
                 penaltyEvent?.Invoke();
             
-            int getAmount = Mathf.RoundToInt(_generateAmount * AmountMultiplier); 
+            int getAmount = Mathf.CeilToInt(_generateAmount * AmountMultiplier); 
+            
+            Debug.Log(getAmount);
             
             GetEnergyEvent evt = EnergyEvents.GetEnergyEvent.Initializer(getAmount);
             energyChannel.RaiseEvent(evt);
@@ -96,6 +96,8 @@ namespace LKW.Generators
                 StopGenerate();
                 return;
             }
+
+            AmountMultiplier = 1f;
 
             if (currentData.CanWorkByWeather(GoodWeatherData))
                 AmountMultiplier = 1.5f;

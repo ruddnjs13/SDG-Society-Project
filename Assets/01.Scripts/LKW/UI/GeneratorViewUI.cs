@@ -25,7 +25,7 @@ namespace LKW.UI
         {
             Debug.Log(generatorData);
             headerText.text = generatorData.generatorName;
-            amountText.text = $"발전량 : {amountMultiplier * generatorData.generateAmount}";
+            amountText.text = $"발전량 : {Mathf.CeilToInt(amountMultiplier * generatorData.generateAmount)}";
             durationText.text =  $"발전시간 : {generatorData.generateTime} 초";
 
             foreach (Transform child in goodParent)

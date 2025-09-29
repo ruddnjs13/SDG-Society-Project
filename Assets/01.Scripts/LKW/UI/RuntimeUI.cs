@@ -21,7 +21,6 @@ namespace LKW.UI
 
         private void HandleSelectPressed()
         {
-            Debug.Log("select");
             Vector2 origin = inputController.GetWorldPointPos();
 
             Collider2D hit = Physics2D.OverlapPoint(origin, LayerMask.GetMask("Building"));

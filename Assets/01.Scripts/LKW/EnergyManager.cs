@@ -17,7 +17,10 @@ namespace LKW
             get  => _energy;
             set
             {
+                int tempValue = Energy;
+                
                 _energy = value;
+                OnEnergyChangeValue?.Invoke(Energy, tempValue, false);
             }
         }
 
@@ -29,10 +32,8 @@ namespace LKW
 
         private void HandleGetEnergyEvent(GetEnergyEvent evt)
         {
-            int tempValue = Energy;
-            
             Energy += evt.getAmount;
-            OnEnergyChangeValue?.Invoke(Energy, tempValue, false);
+            
         }
     }
 }
