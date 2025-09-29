@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
+using CoinSystem;
 using Core.GameEvent;
 using DG.Tweening;
 using Events;
 using LKW.Generators;
+using RuddnjsLib.Dependencies;
 using UnityEngine;
 
 namespace LandSystem.UI
@@ -17,7 +19,8 @@ namespace LandSystem.UI
         [SerializeField] private Transform contentsParent;
         [SerializeField] private RectTransform panel;
         [SerializeField] private Transform warningText;
-        
+
+        [Inject] private CoinManager coinM;
         private bool isOpen;
 
         private void Awake()
@@ -31,19 +34,25 @@ namespace LandSystem.UI
             panel.anchoredPosition = new Vector2(-panel.sizeDelta.x, 0);
             warningText.gameObject.SetActive(false);
             
-            landChannel.AddListener<BuyCompleteGeneratorEvent>(HandlePopupStore);
+            landChannel.AddListener<RequestGeneratorBuyEvent>(HandleRequestBuyGenerator);
             pointChannel.AddListener<BuyFailEvent>(HandleBuyFailWarningText);
+        }
+
+        private void HandleRequestBuyGenerator(RequestGeneratorBuyEvent evt)
+        {
+            if (coinM.CheckCurrentCoin(-evt.generatorData.needCoinCount))
+            {
+                var completeEvt = LandEvents.BuyCompleteGeneratorEvent.Initializer(evt.generatorData);
+                landChannel.RaiseEvent(completeEvt);
+                
+                HandlePopupGeneratorStore();
+            }
         }
 
         private void OnDestroy()
         {
-            landChannel.RemoveListener<BuyCompleteGeneratorEvent>(HandlePopupStore);
+            landChannel.RemoveListener<RequestGeneratorBuyEvent>(HandleRequestBuyGenerator);
             pointChannel.RemoveListener<BuyFailEvent>(HandleBuyFailWarningText);
-        }
-
-        private void HandlePopupStore(BuyCompleteGeneratorEvent evt)
-        {
-            HandlePopupGeneratorStore();
         }
         
         private void HandleBuyFailWarningText(BuyFailEvent evt)

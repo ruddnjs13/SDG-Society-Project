@@ -13,7 +13,7 @@ namespace LandSystem
     {
         [SerializeField] private GameEventChannelSO landChannel;
         [SerializeField] private GameEventChannelSO pointChannel;
-        [SerializeField] private Tilemap canBuildingMap;
+        [SerializeField] private Tilemap[] canBuildingMaps;
 
         [Header("Generators")] 
         [SerializeField] private Generator generatorPrefab;
@@ -31,44 +31,35 @@ namespace LandSystem
             _nearWaterGrid = new HashSet<Vector2Int>();
             _powerStationGrid = new Dictionary<Vector2Int, Generator>();
 
-            foreach (var pos in canBuildingMap.cellBounds.allPositionsWithin)
-            {
-                if(!canBuildingMap.HasTile(pos)) continue;
-                
-                var posXY = GetVectorRound((Vector3)pos);
-                _grid.Add(posXY);
-                _powerStationGrid.Add(posXY, null);
-            }
+            SetupGrid(0);
 
-            foreach (var tilePos in _grid)
-            {
-                Vector3Int pos = new Vector3Int(tilePos.x, tilePos.y, 0);
-                if (CheckNearWater(pos))
-                {
-                    _nearWaterGrid.Add(tilePos);
-                }
-            }
-            
             landChannel.AddListener<BuildRequestEvent>(HandleBuildRequest);
+            landChannel.AddListener<UnlockLandEvent>(HandleUnlockLand);
+        }
+        
+        private void OnDestroy()
+        {
+            landChannel.RemoveListener<BuildRequestEvent>(HandleBuildRequest);
+            landChannel.RemoveListener<UnlockLandEvent>(HandleUnlockLand);
+        }
+        
+        private void HandleUnlockLand(UnlockLandEvent evt)
+        {
+            SetupGrid(evt.index);
         }
 
-        private bool CheckNearWater(Vector3Int pos)
+        private bool CheckNearWater(Vector2Int pos)
         {
             int[] dx = { 0, 1, 1, 1, 0, -1, -1, -1 };
             int[] dy = { 1, 1, 0, -1, -1, -1, 0,  1 };
             
             for (int i = 0; i < 8; i++)
             {
-                var position = pos + new Vector3Int(dx[i], dy[i]);
-                if (!canBuildingMap.HasTile(position)) return true;
+                var position = pos + new Vector2Int(dx[i], dy[i]);
+                if (!_grid.Contains(position)) return true;
             }
             
             return false;
-        }
-
-        private void OnDestroy()
-        {
-            landChannel.RemoveListener<BuildRequestEvent>(HandleBuildRequest);
         }
 
         private void HandleBuildRequest(BuildRequestEvent evt)
@@ -122,6 +113,26 @@ namespace LandSystem
             else
             {
                 Debug.LogError("Not build in the grid");
+            }
+        }
+        
+        private void SetupGrid(int idx)
+        {
+            foreach (var pos in canBuildingMaps[idx].cellBounds.allPositionsWithin)
+            {
+                if(!canBuildingMaps[idx].HasTile(pos)) continue;
+                
+                var posXY = GetVectorRound((Vector3)pos);
+                _grid.Add(posXY);
+                _powerStationGrid.Add(posXY, null);
+            }
+
+            foreach (var tilePos in _grid)
+            {
+                if (CheckNearWater(tilePos))
+                {
+                    _nearWaterGrid.Add(tilePos);
+                }
             }
         }
 

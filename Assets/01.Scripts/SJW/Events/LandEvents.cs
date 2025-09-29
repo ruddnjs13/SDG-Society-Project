@@ -12,6 +12,8 @@ namespace Events
         public static readonly BuildFailEvent BuildFailEvent = new BuildFailEvent();
         public static readonly BuildRequestEvent BuildRequestEvent = new BuildRequestEvent();
         public static readonly BuyCompleteGeneratorEvent BuyCompleteGeneratorEvent = new BuyCompleteGeneratorEvent();
+        public static readonly UnlockLandEvent UnlockLandEvent = new UnlockLandEvent();
+        public static readonly BuyUnlockLandEvent BuyUnlockLandEvent = new BuyUnlockLandEvent();
     }
 
     public class BuildCompleteEvent : GameEvent
@@ -57,5 +59,28 @@ namespace Events
             return this;
         }
     }
+
+    public class BuyUnlockLandEvent : GameEvent
+    {
+        public int index;
+        public int needCoin;
+        
+        public BuyUnlockLandEvent Initializer(int idx, int coin)
+        {
+            index = idx;
+            needCoin = coin;
+            return this;
+        }
+    }
     
+    public class UnlockLandEvent : GameEvent
+    {
+        public int index;
+        
+        public UnlockLandEvent Initializer(int idx)
+        {
+            index = idx;
+            return this;
+        }
+    }
 }
