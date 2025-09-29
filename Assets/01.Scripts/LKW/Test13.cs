@@ -9,29 +9,15 @@ using UnityEngine.InputSystem;
 
 public class Test13 : MonoBehaviour
 {
-    [SerializeField] private GameEventChannelSO environmentChannel;
-    [SerializeField] private GameObject generatorItem;
-    [SerializeField] private GeneratorDataSO generatorData;
-    [SerializeField] private WeatherType weatherType;
-    [SerializeField] private TimeZoneType timeZoneType;
-
     private void Update()
     {
-        if (Keyboard.current.qKey.wasPressedThisFrame)
-        {
-            Generator generator =  Instantiate(generatorItem, transform.position, Quaternion.identity)
-                .GetComponent<Generator>();
-            generator.Initialize(generatorData);
-        }
-        
         if (Keyboard.current.f1Key.wasPressedThisFrame)
         {
-            var evt = EnvironmentEvents.EnvironmentChangeEvent.Init(new SendEnvironmentData()
-                {
-                    TypeBit = (int)weatherType | (int)timeZoneType
-                }
-                , null);
-            environmentChannel.RaiseEvent(evt);
+            Time.timeScale = 5f;
+        }
+        if (Keyboard.current.f2Key.wasPressedThisFrame)
+        {
+            Time.timeScale = 1f;
         }
     }
 }
