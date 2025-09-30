@@ -118,7 +118,7 @@ namespace LandSystem
 
         public bool BreakGenerator(Vector2Int pos)
         {
-            if (!_grid.Contains(pos) && !_powerStationGrid[pos]) return false;
+            if (!_grid.Contains(pos) || _powerStationGrid[pos] == null) return false;
 
             var item = _powerStationGrid[pos];
             _powerStationGrid[pos] = null;
