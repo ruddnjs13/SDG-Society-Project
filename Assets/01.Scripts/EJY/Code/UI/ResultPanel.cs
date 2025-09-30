@@ -12,8 +12,13 @@ namespace Code.UI
         {
             if (isClear)
             {
-                gradeImage.ScaleEffect((PollutionManager.Instance.currentPollution /
-                                        PollutionManager.Instance.MaxPollution) * 100f);
+                float ratio = PollutionManager.Instance.currentPollution /
+                               PollutionManager.Instance.MaxPollution;
+                gradeImage.ScaleEffect(ratio * 100f);
+                if(Mathf.Approximately(ratio, 0f))
+                {
+                    return;
+                }
                 SetCanvasGroup(clearGroup, true);
                 SetCanvasGroup(failGroup, false);
             }
@@ -22,6 +27,7 @@ namespace Code.UI
                 SetCanvasGroup(clearGroup, false);
                 SetCanvasGroup(failGroup, true);
             }
+            ControlMenu();
         }
 
         private void SetCanvasGroup(CanvasGroup targetCanvasGroup, bool isOn)

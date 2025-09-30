@@ -143,6 +143,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MainCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 2337075276761635085, guid: b75e4671d744c93408de3bbbad8aa8d2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3019697530956145134, guid: b75e4671d744c93408de3bbbad8aa8d2, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -601,6 +605,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: Code.UI.ResultPanel, Assembly-CSharp
         m_MethodName: GenerateResult
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 108611663}
+        m_TargetAssemblyTypeName: Code.UI.ResultPanel, Assembly-CSharp
+        m_MethodName: ControlMenu
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2808,7 +2824,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7472b2460dd4420d8f7de7c9a8fbd545, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetEnergy: 2000
+  targetEnergy: 10
   barRect: {fileID: 663604075}
   energyChannel: {fileID: 11400000, guid: 12311376e32749d43b81c629980358ef, type: 2}
   onCompleteEvent:
@@ -2825,6 +2841,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 108611663}
+        m_TargetAssemblyTypeName: Code.UI.ResultPanel, Assembly-CSharp
+        m_MethodName: ControlMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &664006787
 GameObject:

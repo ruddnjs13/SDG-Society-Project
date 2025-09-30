@@ -29,7 +29,8 @@ namespace Code.UI
         {
             if (Mathf.Approximately(0f, percentage))
             {
-                sceneChannel.RaiseEvent(SceneEvents.FadeEvent.Init(true, "PerfectClearScene"));
+                gradeImage.enabled = false;
+                sceneChannel.RaiseEvent(SceneEvents.FadeEvent.Init(true, "GameClear"));
             }
             else if (percentage is <= 10 and > 0)
             {
