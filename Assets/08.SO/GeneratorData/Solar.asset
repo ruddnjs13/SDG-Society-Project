@@ -24,7 +24,8 @@ MonoBehaviour:
   - {fileID: 4355254178158111452, guid: e638db4d391f97848903ffcfacc688f6, type: 3}
   - {fileID: -4086970153546226885, guid: e638db4d391f97848903ffcfacc688f6, type: 3}
   generateTime: 4
-  generateAmount: 1
+  generateAmount: 2
   amountMultiplier: 1
   needCoinCount: 5
   isNeedWater: 0
+  isPenalty: 0

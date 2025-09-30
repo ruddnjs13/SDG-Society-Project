@@ -87,6 +87,7 @@ GameObject:
   - component: {fileID: 7418045857508146878}
   - component: {fileID: 1925814661819401021}
   - component: {fileID: 3743190357448233538}
+  - component: {fileID: 8030383624290725449}
   m_Layer: 5
   m_Name: TitleButton
   m_TagString: Untagged
@@ -196,9 +197,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Code.UI.PauseMenu, Assembly-CSharp
-        m_MethodName: OnInGameExit
+      - m_Target: {fileID: 8030383624290725449}
+        m_TargetAssemblyTypeName: Code.UI.FadeSystem.SceneChangeEvt, Assembly-CSharp
+        m_MethodName: SceneChange
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -208,6 +209,19 @@ MonoBehaviour:
           m_StringArgument: TitleScene
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &8030383624290725449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 103678293553945468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22f7d4d55f734455a5dde11ac75d8843, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneChannel: {fileID: 11400000, guid: c5acde7f15b0f854b856884946b20500, type: 2}
 --- !u!1 &187223541084488441
 GameObject:
   m_ObjectHideFlags: 0
@@ -570,7 +584,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b6a3c08548a46b0884989b1a0396645, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioMixer: {fileID: 24100000, guid: 48461849c0629684abe8f37b3e791e2b, type: 2}
+  audioMixer: {fileID: 24100000, guid: 861ab5778322a8f42ada9413dc6c9f01, type: 2}
   soundSlider: {fileID: 8392868432027512603}
   volumeName: Master
 --- !u!114 &5803914463622161993
@@ -860,7 +874,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b6a3c08548a46b0884989b1a0396645, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioMixer: {fileID: 24100000, guid: 48461849c0629684abe8f37b3e791e2b, type: 2}
+  audioMixer: {fileID: 24100000, guid: 861ab5778322a8f42ada9413dc6c9f01, type: 2}
   soundSlider: {fileID: 8506909071728565142}
   volumeName: BGM
 --- !u!114 &6974542013240298470
@@ -1003,7 +1017,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7441659043509592287}
         m_TargetAssemblyTypeName: Code.UI.PauseMenu, Assembly-CSharp
         m_MethodName: ControlMenu
         m_Mode: 1
@@ -2803,7 +2817,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b6a3c08548a46b0884989b1a0396645, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioMixer: {fileID: 24100000, guid: 48461849c0629684abe8f37b3e791e2b, type: 2}
+  audioMixer: {fileID: 24100000, guid: 861ab5778322a8f42ada9413dc6c9f01, type: 2}
   soundSlider: {fileID: 1039168884939897012}
   volumeName: SFX
 --- !u!114 &4311296973101333655
