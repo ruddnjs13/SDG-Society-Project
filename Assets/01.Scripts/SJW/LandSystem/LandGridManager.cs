@@ -115,6 +115,18 @@ namespace LandSystem
                 Debug.LogError("Not build in the grid");
             }
         }
+
+        public bool BreakGenerator(Vector2Int pos)
+        {
+            if (!_grid.Contains(pos) && !_powerStationGrid[pos]) return false;
+
+            var item = _powerStationGrid[pos];
+            _powerStationGrid[pos] = null;
+
+            var evt = LandEvents.BreakGeneratorEvent.Initializer(item);
+            landChannel.RaiseEvent(evt);
+            return true;
+        }
         
         private void SetupGrid(int idx)
         {

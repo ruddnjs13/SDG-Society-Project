@@ -20,12 +20,14 @@ namespace LKW.Generators
         {
             environmentChannel.AddListener<EnvironmentChangeEvent>(HandleEnvironmentChangeEvent);
             landChannel.AddListener<BuildCompleteEvent>(HandleBuildCompleteEvent);
+            landChannel.AddListener<BreakGeneratorEvent>(HandleBreakGeneratorEvent);
         }
 
         private void OnDestroy()
         {
             environmentChannel.RemoveListener<EnvironmentChangeEvent>(HandleEnvironmentChangeEvent);
             landChannel.RemoveListener<BuildCompleteEvent>(HandleBuildCompleteEvent);
+            landChannel.RemoveListener<BreakGeneratorEvent>(HandleBreakGeneratorEvent);
         }
 
         private void Update()
@@ -56,6 +58,12 @@ namespace LKW.Generators
         {
             Debug.Log("설치후 추가");
             AddGenerator(evt.generator);
+        }
+
+        private void HandleBreakGeneratorEvent(BreakGeneratorEvent evt)
+        {
+            generators.Remove(evt.generator);
+            Destroy(evt.generator.gameObject);
         }
 
         private void HandleEnvironmentChangeEvent(EnvironmentChangeEvent evt)

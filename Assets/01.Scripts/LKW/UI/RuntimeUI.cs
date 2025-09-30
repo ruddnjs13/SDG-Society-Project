@@ -19,7 +19,7 @@ namespace LKW.UI
             inputController.OnSelectPressed -= HandleSelectPressed;
         }
 
-        private void HandleSelectPressed()
+        private async void HandleSelectPressed()
         {
             Vector2 origin = inputController.GetWorldPointPos();
 
@@ -27,6 +27,10 @@ namespace LKW.UI
 
             if (hit != null && hit.TryGetComponent(out Generator generator))
             {
+                await Awaitable.NextFrameAsync(destroyCancellationToken);
+
+                if (!generator) return;
+                
                 generatorViewUI.SetView(generator.MyData, generator.AmountMultiplier);
                 generatorViewUI.gameObject.SetActive(true);
             }

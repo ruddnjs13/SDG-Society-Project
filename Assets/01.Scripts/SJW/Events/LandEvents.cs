@@ -14,6 +14,7 @@ namespace Events
         public static readonly BuyCompleteGeneratorEvent BuyCompleteGeneratorEvent = new BuyCompleteGeneratorEvent();
         public static readonly UnlockLandEvent UnlockLandEvent = new UnlockLandEvent();
         public static readonly BuyUnlockLandEvent BuyUnlockLandEvent = new BuyUnlockLandEvent();
+        public static readonly BreakGeneratorEvent BreakGeneratorEvent = new BreakGeneratorEvent();
     }
 
     public class BuildCompleteEvent : GameEvent
@@ -80,6 +81,17 @@ namespace Events
         public UnlockLandEvent Initializer(int idx)
         {
             index = idx;
+            return this;
+        }
+    }
+
+    public class BreakGeneratorEvent : GameEvent
+    {
+        public Generator generator;
+        
+        public BreakGeneratorEvent Initializer(Generator data)
+        {
+            generator = data;
             return this;
         }
     }

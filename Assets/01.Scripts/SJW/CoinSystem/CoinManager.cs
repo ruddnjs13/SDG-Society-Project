@@ -15,6 +15,7 @@ namespace CoinSystem
         [SerializeField] private GameEventChannelSO landChannel;
 
         [SerializeField] private int _currentCoin;
+        public int CurrentCoin => _currentCoin;
         
         private void Awake()
         {
