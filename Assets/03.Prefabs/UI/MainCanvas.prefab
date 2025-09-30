@@ -1273,7 +1273,7 @@ MonoBehaviour:
   sizeMultiplier: 5
   gradeImage: {fileID: 6072555079321021702}
   sceneChannel: {fileID: 11400000, guid: c5acde7f15b0f854b856884946b20500, type: 2}
-  aImage: {fileID: 0}
+  aImage: {fileID: 908747975938580524, guid: 6c463a80be299714e807d5112d8af37f, type: 3}
   bImage: {fileID: -5240384769198421359, guid: 6c463a80be299714e807d5112d8af37f, type: 3}
   cImage: {fileID: 8286114400431311724, guid: 6c463a80be299714e807d5112d8af37f, type: 3}
   startColor: {r: 0, g: 0, b: 0, a: 1}

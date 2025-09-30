@@ -30,7 +30,7 @@ namespace Code.UI
         {
             _currentEnergy += evt.getAmount;
 
-            if (Mathf.Approximately(_currentEnergy, targetEnergy))
+            if (Mathf.Approximately(Mathf.Clamp(_currentEnergy, 0, targetEnergy), targetEnergy))
             {
                 onCompleteEvent?.Invoke(true);
             }

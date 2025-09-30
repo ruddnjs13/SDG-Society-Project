@@ -1,4 +1,5 @@
-﻿using Code.Events;
+﻿using System;
+using Code.Events;
 using Core.GameEvent;
 using DG.Tweening;
 using TMPro;
@@ -12,9 +13,9 @@ namespace Code.UI
         [SerializeField] private GameEventChannelSO sceneChannel;
         [SerializeField] private TextMeshProUGUI clickText;
         [SerializeField] private float fadeDuration = 0.2f;
-        protected override void Awake()
+
+        private void Start()
         {
-            base.Awake();
             Open();
             clickText.DOFade(0, fadeDuration).SetLoops(-1, LoopType.Yoyo);
         }
