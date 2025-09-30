@@ -8913,7 +8913,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2279772086824323434, guid: 60dd93f53d14c004b932c53063b35995, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -0.00009061007
       objectReference: {fileID: 0}
     - target: {fileID: 2742595447077769462, guid: 60dd93f53d14c004b932c53063b35995, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -9039,6 +9039,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7259008039921251933, guid: 60dd93f53d14c004b932c53063b35995, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8325427697516187698, guid: 60dd93f53d14c004b932c53063b35995, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -9055,6 +9059,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9081015066684908081, guid: 60dd93f53d14c004b932c53063b35995, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -6163525010536124766, guid: 501cef097620138428f04428a54f2d8c, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
