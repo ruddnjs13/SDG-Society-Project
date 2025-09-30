@@ -6057,6 +6057,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7841292083059214774, guid: 5dd973f254ff9034a8c88de6dd74957b, type: 3}
+      propertyPath: inStartFadeIn
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8462355689613744354, guid: 5dd973f254ff9034a8c88de6dd74957b, type: 3}
       propertyPath: m_Name
       value: TransitionSystem
